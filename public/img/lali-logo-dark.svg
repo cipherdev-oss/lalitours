@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" width="100%" height="100%">
+  <defs>
+    <!-- Detailed Authentic Geographic Teardrop Contour of Sri Lanka -->
+    <clipPath id="sri-lanka-accurate-clip-dark">
+      <path d="M 285 45
+               C 278 40, 268 45, 262 52
+               C 255 60, 258 70, 252 78
+               C 246 86, 235 90, 232 102
+               C 229 114, 236 126, 232 138
+               C 228 150, 222 162, 222 176
+               C 222 195, 228 212, 232 230
+               C 236 248, 238 266, 245 284
+               C 252 302, 265 318, 278 332
+               C 292 346, 310 354, 328 350
+               C 345 346, 360 332, 372 316
+               C 384 300, 395 280, 402 260
+               C 409 240, 412 218, 410 196
+               C 408 175, 398 154, 388 135
+               C 378 116, 364 98, 350 82
+               C 336 66, 320 54, 304 46
+               C 298 43, 291 42, 285 45 Z" />
+    </clipPath>
+
+    <!-- Sunset Sky Gradient -->
+    <linearGradient id="sky-accurate-dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d6570" />
+      <stop offset="30%" stop-color="#14838f" />
+      <stop offset="55%" stop-color="#22a8b5" />
+      <stop offset="72%" stop-color="#f5a438" />
+      <stop offset="88%" stop-color="#f38025" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+
+    <radialGradient id="sun-glow-dark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="30%" stop-color="#fffbeb" />
+      <stop offset="65%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="ocean-lagoon-dark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0891b2" />
+      <stop offset="40%" stop-color="#06b6d4" />
+      <stop offset="75%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#67e8f9" />
+    </linearGradient>
+
+    <linearGradient id="sigiriya-rock-grad-dark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#134e4a" />
+      <stop offset="45%" stop-color="#115e59" />
+      <stop offset="75%" stop-color="#785324" />
+      <stop offset="100%" stop-color="#b4782b" />
+    </linearGradient>
+
+    <linearGradient id="beach-sand-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="50%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#fde047" />
+    </linearGradient>
+
+    <filter id="neon-glow-dark" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#06b6d4" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- 1. SRI LANKA ISLAND SCENIC EMBLEM -->
+  <g id="island-emblem-dark" filter="url(#neon-glow-dark)">
+    <g clip-path="url(#sri-lanka-accurate-clip-dark)">
+      <rect x="200" y="30" width="230" height="340" fill="url(#sky-accurate-dark)" />
+
+      <!-- Distant Soft Cloud Strata -->
+      <path d="M 220 120 Q 280 110, 340 125 T 410 115 L 410 135 L 220 135 Z" fill="#ffffff" fill-opacity="0.12" />
+      <path d="M 230 145 Q 300 138, 360 150 T 410 140 L 410 155 L 230 155 Z" fill="#fde047" fill-opacity="0.18" />
+
+      <!-- Sun -->
+      <circle cx="355" cy="195" r="45" fill="url(#sun-glow-dark)" />
+      <circle cx="355" cy="195" r="22" fill="#fffbeb" />
+
+      <!-- Mountain Ridge behind Sigiriya -->
+      <path d="M 240 220 L 270 195 L 305 210 L 335 188 L 380 215 L 415 195 L 415 240 L 240 240 Z" fill="#0f766e" fill-opacity="0.75" />
+
+      <!-- SIGIRIYA ROCK FORTRESS (LION ROCK) -->
+      <path d="M 264 212 
+               L 267 185 
+               Q 269 175, 276 172 
+               L 310 171 
+               Q 318 174, 321 184 
+               L 326 210 
+               Q 328 220, 332 225 
+               L 258 225 
+               Z" 
+            fill="url(#sigiriya-rock-grad-dark)" />
+
+      <!-- Sigiriya Flat Top Terraces -->
+      <path d="M 272 173 L 314 172 Q 312 170, 305 169 L 280 169 Z" fill="#064e3b" />
+      <path d="M 288 174 L 286 210" stroke="#042f2e" stroke-width="2" opacity="0.6" />
+      <path d="M 298 173 L 297 212" stroke="#042f2e" stroke-width="1.8" opacity="0.5" />
+      <path d="M 308 174 L 309 212" stroke="#eab308" stroke-width="2.5" opacity="0.75" />
+      <path d="M 316 176 L 319 210" stroke="#f59e0b" stroke-width="3" opacity="0.85" />
+
+      <!-- Dense Jungle Canopy -->
+      <path d="M 220 230 Q 255 210, 290 226 Q 325 214, 360 228 Q 395 212, 420 230 L 420 350 L 220 350 Z" fill="#064e3b" />
+      <path d="M 230 248 Q 260 230, 295 244 Q 330 232, 365 246 Q 395 235, 420 250 L 420 350 L 230 350 Z" fill="#047857" />
+
+      <!-- Ocean & Beach -->
+      <path d="M 265 340 Q 300 250, 345 240 Q 380 238, 415 252 L 415 350 Z" fill="url(#ocean-lagoon-dark)" />
+      <path d="M 255 340 Q 290 262, 335 250 Q 360 245, 375 255 Q 330 262, 280 340 Z" fill="url(#beach-sand-dark)" />
+
+      <!-- Sun Reflection on Ocean -->
+      <ellipse cx="360" cy="275" rx="28" ry="4" fill="#fde047" fill-opacity="0.65" />
+      <ellipse cx="355" cy="290" rx="36" ry="4.5" fill="#fde047" fill-opacity="0.75" />
+      <ellipse cx="350" cy="308" rx="26" ry="3.5" fill="#fde047" fill-opacity="0.55" />
+
+      <path d="M 305 258 Q 335 252, 360 260" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.9" />
+      <path d="M 285 285 Q 320 274, 350 286" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.8" />
+
+      <!-- HIKER / TRAVELER SILHOUETTE WITH BACKPACK & WALKING STICK -->
+      <path d="M 235 345 Q 260 270, 305 272 Q 325 278, 318 345 Z" fill="#022c22" />
+      <g id="hiker-silhouette-dark">
+        <line x1="316" y1="262" x2="316" y2="295" stroke="#042f2e" stroke-width="1.8" stroke-linecap="round" />
+        <circle cx="304" cy="254" r="3.8" fill="#042f2e" />
+        <path d="M 299 262 Q 297 268, 298 274 L 305 274 L 307 262 Z" fill="#042f2e" />
+        <path d="M 302 258 L 308 259 L 307 275 L 301 275 Z" fill="#042f2e" />
+        <path d="M 306 262 Q 312 265, 316 268" stroke="#042f2e" stroke-width="2" stroke-linecap="round" fill="none" />
+        <line x1="303" y1="275" x2="303" y2="292" stroke="#042f2e" stroke-width="2.4" stroke-linecap="round" />
+        <line x1="306" y1="275" x2="308" y2="292" stroke="#042f2e" stroke-width="2.4" stroke-linecap="round" />
+      </g>
+
+      <!-- Coconut Palm Trees -->
+      <path d="M 236 295 Q 248 230, 276 175 Q 284 158, 288 142" stroke="#022c22" stroke-width="5.5" stroke-linecap="round" fill="none" />
+      <path d="M 288 142 Q 306 130, 324 148" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+      <path d="M 295 138 L 300 148 M 301 138 L 307 149 M 308 140 L 315 152 M 315 142 L 322 154" stroke="#022c22" stroke-width="1.6" />
+      <path d="M 288 142 Q 312 150, 320 175" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+      <path d="M 294 146 L 302 156 M 301 151 L 310 162 M 308 156 L 316 168" stroke="#022c22" stroke-width="1.6" />
+      <path d="M 288 142 Q 302 165, 305 192" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+      <path d="M 288 142 Q 276 122, 258 126" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+      <path d="M 282 133 L 274 140 M 275 128 L 267 135 M 268 126 L 260 132" stroke="#022c22" stroke-width="1.6" />
+      <path d="M 288 142 Q 266 140, 250 156" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+
+      <!-- Left Secondary Palm -->
+      <path d="M 230 305 Q 248 260, 260 220 Q 266 205, 270 195" stroke="#022c22" stroke-width="3.6" stroke-linecap="round" fill="none" />
+      <path d="M 270 195 Q 284 186, 296 195" stroke="#022c22" stroke-width="2" stroke-linecap="round" fill="none" />
+      <path d="M 270 195 Q 282 202, 286 218" stroke="#022c22" stroke-width="2" stroke-linecap="round" fill="none" />
+
+      <!-- Right Headland Small Palm -->
+      <path d="M 390 270 Q 388 256, 386 242" stroke="#022c22" stroke-width="2.8" stroke-linecap="round" fill="none" />
+      <path d="M 386 242 Q 394 235, 402 242" stroke="#022c22" stroke-width="1.8" stroke-linecap="round" fill="none" />
+      <path d="M 386 242 Q 398 244, 404 252" stroke="#022c22" stroke-width="1.8" stroke-linecap="round" fill="none" />
+
+      <!-- Birds -->
+      <path d="M 324 122 Q 330 117, 336 122 Q 342 117, 348 122 Q 342 120, 336 124 Q 330 120, 324 122 Z" fill="#042f2e" />
+      <path d="M 338 140 Q 343 135, 349 140 Q 355 135, 360 140 Q 355 138, 349 142 Q 343 138, 338 140 Z" fill="#042f2e" />
+      <path d="M 320 150 Q 324 146, 328 150 Q 333 146, 337 150 Q 333 148, 328 151 Q 324 148, 320 150 Z" fill="#042f2e" opacity="0.85" />
+    </g>
+
+    <!-- Outer Island Contour -->
+    <path d="M 285 45
+             C 278 40, 268 45, 262 52
+             C 255 60, 258 70, 252 78
+             C 246 86, 235 90, 232 102
+             C 229 114, 236 126, 232 138
+             C 228 150, 222 162, 222 176
+             C 222 195, 228 212, 232 230
+             C 236 248, 238 266, 245 284
+             C 252 302, 265 318, 278 332
+             C 292 346, 310 354, 328 350
+             C 345 346, 360 332, 372 316
+             C 384 300, 395 280, 402 260
+             C 409 240, 412 218, 410 196
+             C 408 175, 398 154, 388 135
+             C 378 116, 364 98, 350 82
+             C 336 66, 320 54, 304 46
+             C 298 43, 291 42, 285 45 Z"
+          fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-opacity="0.85" />
+  </g>
+
+  <!-- 2. "Lali" CALLIGRAPHIC EXPRESSIVE BRUSH LETTERING (Illuminated for dark theme) -->
+  <g id="lali-brush-text-dark">
+    <!-- Capital 'L' Left Slant Sweep -->
+    <path d="M 215 280 
+             C 200 320, 172 385, 142 445 
+             C 136 458, 126 470, 114 462 
+             C 106 454, 108 438, 115 420 
+             C 130 380, 160 310, 185 255 
+             C 200 220, 218 198, 228 208 
+             C 233 214, 228 238, 220 260 Z" 
+          fill="#38bdf8" />
+
+    <path d="M 226 212 
+             C 214 246, 186 332, 158 405 
+             C 152 422, 142 454, 128 472 
+             C 118 485, 102 488, 92 478 
+             C 82 468, 85 448, 92 428 
+             C 102 400, 120 374, 140 358 
+             C 144 354, 148 358, 144 364 
+             C 126 380, 108 406, 102 432 
+             C 98 446, 104 458, 115 458 
+             C 128 458, 156 438, 198 424 
+             C 216 418, 224 424, 212 430 
+             C 165 445, 132 466, 112 470 Z" 
+          fill="#ffffff" />
+
+    <path d="M 98 458 
+             C 125 454, 168 442, 222 428 
+             C 246 422, 258 426, 240 434 
+             C 192 448, 145 466, 108 472 Z" 
+          fill="#ffffff" />
+
+    <!-- 'a' -->
+    <path d="M 278 382 
+             C 260 378, 238 392, 232 414 
+             C 224 438, 238 456, 258 452 
+             C 275 448, 288 432, 294 416 
+             L 290 448 C 290 456, 302 458, 304 448 
+             L 312 396 C 314 388, 304 384, 298 390 
+             C 292 400, 288 416, 284 428 
+             C 278 442, 265 448, 252 444 
+             C 240 440, 236 426, 242 410 
+             C 248 396, 265 388, 278 388 
+             C 288 388, 292 380, 278 382 Z" 
+          fill="#ffffff" />
+
+    <!-- 'l' -->
+    <path d="M 345 250 
+             C 338 242, 328 248, 324 260 
+             C 314 290, 304 350, 296 418 
+             L 292 452 C 290 460, 300 464, 304 455 
+             C 314 432, 332 350, 344 282 
+             C 348 268, 350 256, 345 250 Z" 
+          fill="#ffffff" />
+
+    <path d="M 298 448 Q 318 438, 338 424 L 340 432 Q 320 448, 298 454 Z" fill="#ffffff" />
+
+    <!-- 'i' -->
+    <path d="M 354 388 
+             C 346 392, 342 400, 340 410 
+             C 336 424, 334 442, 334 452 
+             C 334 460, 344 464, 354 456 
+             C 366 446, 382 430, 400 412 
+             C 406 406, 398 400, 392 406 
+             C 378 420, 364 436, 354 444 
+             C 350 446, 346 442, 348 436 
+             L 358 396 C 360 390, 358 386, 354 388 Z" 
+          fill="#ffffff" />
+
+    <ellipse cx="372" cy="362" rx="7" ry="5.5" transform="rotate(-25 372 362)" fill="#38bdf8" />
+  </g>
+
+  <!-- 3. "CEYLON TOURS" -->
+  <text x="300" y="525" 
+        font-family="'Montserrat', 'Manrope', 'Helvetica Neue', sans-serif" 
+        font-size="36" 
+        font-weight="900" 
+        letter-spacing="14" 
+        fill="#ffffff" 
+        text-anchor="middle">CEYLON TOURS</text>
+
+  <!-- 4. "— More Than Just a Trip —" -->
+  <g id="tagline-accurate-dark">
+    <line x1="80" y1="565" x2="145" y2="565" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.85" />
+
+    <text x="300" y="575" 
+          font-family="'Cormorant Garamond', 'Baskerville', 'Georgia', serif" 
+          font-style="italic" 
+          font-weight="700" 
+          font-size="28" 
+          letter-spacing="1.5" 
+          fill="#38bdf8" 
+          text-anchor="middle">More Than Just a Trip</text>
+
+    <line x1="455" y1="565" x2="520" y2="565" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.85" />
+  </g>
+</svg>

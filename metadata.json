@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Globe Express - Luxury Destinations Explorer",
+  "description": "An aesthetic cinematic luxury travel experience exploring Sri Lanka, the Pearl of the Indian Ocean, with smooth auto-scrolling hero imagery, touch/swipe transitions, and clean glass editorial layout.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

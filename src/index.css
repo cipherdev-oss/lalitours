@@ -1,0 +1,383 @@
+@import "tailwindcss";
+
+/* =========================================
+   LALI CEYLON TOURS - TYPOGRAPHY
+   ========================================= */
+
+/* Default website font */
+body {
+    font-family: 'Manrope', sans-serif;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(14px, 2.2vw, 22px);
+    font-weight: 700;
+
+    letter-spacing: clamp(0.8px, 0.2vw, 1.5px);
+    text-transform: uppercase;
+
+    color: #ffffff;
+}
+
+.logo-tagline {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(7.5px, 0.8vw, 9px);
+    font-weight: 600;
+
+    letter-spacing: clamp(1.8px, 0.3vw, 4px);
+    text-transform: uppercase;
+
+    color: #00d9ff;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.nav-links a,
+.nav-links button {
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(255,255,255,0.75);
+
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-links a.active,
+.nav-links button.active {
+    color: #00ddff;
+}
+
+
+/* ---------- MAIN HERO TITLE ---------- */
+
+.hero-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(65px, 8vw, 140px);
+    line-height: 0.82;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 900;
+}
+
+.hero-title .lali {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    -webkit-text-stroke: 2.5px #ffffff;
+    paint-order: stroke fill;
+    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title .ceylon {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    background: linear-gradient(
+        180deg,
+        #ffffff 10%,
+        #d1f8fd 45%,
+        #a5f3fc 75%,
+        #82e7f8 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px rgba(165, 243, 252, 0.85);
+    paint-order: stroke fill;
+    filter: drop-shadow(0 4px 25px rgba(0, 0, 0, 0.5));
+}
+
+.hero-title .tours {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 200;
+    letter-spacing: 0.09em;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+}
+
+
+/* ---------- HERO LOCATION ---------- */
+
+.hero-location {
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+
+    color: #f5d15c;
+}
+
+
+/* ---------- HERO DESCRIPTION ---------- */
+
+.hero-description {
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 17px;
+    font-weight: 400;
+
+    line-height: 1.7;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.85);
+
+    max-width: 600px;
+}
+
+
+/* ---------- DESTINATION NAMES ---------- */
+
+.destination-name {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 38px;
+
+    font-weight: 500;
+
+    font-style: italic;
+
+    line-height: 1;
+
+    color: rgba(255,255,255,0.82);
+
+    transition: 0.3s ease;
+}
+
+
+/* ACTIVE DESTINATION */
+
+.destination.active .destination-name,
+.destination-active-name {
+    color: #f3ce58 !important;
+
+    font-size: 43px !important;
+
+    font-weight: 600 !important;
+}
+
+
+/* ---------- DESTINATION SUBTITLE ---------- */
+
+.destination-location {
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.btn,
+button {
+    font-family: 'Manrope', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+}
+
+
+/* BOOK YOUR TOUR */
+
+.book-tour-btn {
+    font-family: 'Montserrat', sans-serif;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   LENIS SMOOTH SCROLLING & BOUNDARY CUSHIONING
+   ========================================= */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Smooth, responsive scrolling and layout stability */
+html {
+  /* Lenis orchestrates buttery smooth scroll; scroll-padding prevents sticky header clipping */
+  scroll-padding-top: 84px;
+  scroll-padding-bottom: 84px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior-y: auto;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  -webkit-overflow-scrolling: touch;
+  /* Allow natural soft elastic deceleration so start/end of page never hit corners harshly */
+  overscroll-behavior-y: auto;
+}
+
+/* Hardware accelerated layer */
+.gpu-layer {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Offscreen content optimization for silky mobile scroll */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 650px;
+}
+
+/* Refined Soft-Dark Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.22);
+}
+
+.glass-card-active {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(251, 191, 36, 0.85);
+  box-shadow: 0 8px 30px -8px rgba(251, 191, 36, 0.35);
+}
+
+/* Deep blur on desktop where high-fillrate GPUs are available */
+@media (min-width: 768px) {
+  .glass-panel {
+    background: rgba(30, 41, 59, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-panel-light {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-card {
+    background: rgba(30, 41, 59, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.22);
+  }
+
+  .glass-card-active {
+    background: rgba(51, 65, 85, 0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 10px 40px -10px rgba(251, 191, 36, 0.35);
+  }
+}
+
+.glass-glow {
+  box-shadow: 0 0 40px -10px rgba(255, 255, 255, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.glass-glow-amber {
+  box-shadow: 0 0 35px -5px rgba(251, 191, 36, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.glow-orange-line {
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.85), 0 0 4px rgba(245, 158, 11, 0.65);
+}
+
+.ambient-slate-glow {
+  background: 
+    radial-gradient(ellipse 65% 55% at 50% 20%, rgba(56, 189, 248, 0.14) 0%, rgba(14, 165, 233, 0.05) 45%, transparent 75%),
+    radial-gradient(circle at 15% 45%, rgba(56, 189, 248, 0.09) 0%, transparent 50%),
+    radial-gradient(circle at 85% 65%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(3, 105, 161, 0.09) 0%, transparent 50%);
+}
+
+/* Curved Bubble Rail Styling */
+.curved-bubble-item {
+  transform: translateX(var(--curve-mobile, 0px));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .curved-bubble-item {
+    transform: translateX(var(--curve-desktop, 0px));
+  }
+}
+
+/* Custom scrollbar for filmstrips */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
