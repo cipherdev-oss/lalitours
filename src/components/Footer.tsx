@@ -9,13 +9,13 @@ import {
   Award,
   Heart,
   ArrowUp,
-  MessageCircle,
   ExternalLink,
   ChevronRight,
   Compass,
 } from 'lucide-react';
 import { smoothScrollToTop, smoothScrollTo } from '../utils/smoothScroll';
 import { LaliLogo } from './LaliLogo';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface FooterProps {
   onNavigate?: (view: 'home' | 'tours' | 'destinations' | 'about' | 'book', sectionId?: string) => void;
@@ -232,7 +232,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 rel="noreferrer"
                 className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/80 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors group cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <WhatsAppIcon className="w-4 h-4 mt-0.5 group-hover:scale-110 transition-transform" />
                 <div>
                   <div className="text-[10px] uppercase font-mono text-emerald-400 font-bold">
                     WhatsApp & Hotline

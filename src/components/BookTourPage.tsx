@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   MapPin,
   Calendar as CalendarIcon,
@@ -10,9 +10,7 @@ import {
   ArrowRight,
   Phone,
   Mail,
-  CheckCircle2,
   Sparkles,
-  MessageCircle,
   ArrowLeft,
   X,
   ShieldCheck,
@@ -23,6 +21,8 @@ import {
 import { smoothScrollTo } from '../utils/smoothScroll';
 import { WaveDivider } from './WaveDivider';
 import { LaliLogo } from './LaliLogo';
+import { BookingReviewModal } from './BookingReviewModal';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface BookTourPageProps {
   initialTour?: string;
@@ -138,8 +138,7 @@ export const BookTourPage: React.FC<BookTourPageProps> = ({
 
   // Review & Confirmation State
   const [isReviewOpen, setIsReviewOpen] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [bookingRef, setBookingRef] = useState('');
+  const [isWhatsAppReady, setIsWhatsAppReady] = useState(false);
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
 
   // Sync if initialTour changes
@@ -171,6 +170,16 @@ export const BookTourPage: React.FC<BookTourPageProps> = ({
     return travelDate;
   }, [travelDate]);
 
+  const whatsAppMessage = `Hello Lali Ceylon Tours! I would like to reserve "${selectedPackage.name}" (${selectedPackage.duration}).
+Travel Date: ${formattedDate}
+Travelers: ${adultsCount} Adults${childrenCount > 0 ? `, ${childrenCount} Children` : ''}
+Tour Type: ${tourType}
+My Name: ${fullName}
+Email: ${email}
+Phone: ${countryCode} ${phone}
+Additional notes: ${initialNotes?.trim() || 'None'}`;
+  const whatsAppUrl = `https://wa.me/94771234567?text=${encodeURIComponent(whatsAppMessage)}`;
+
   // Validation
   const validateForm = () => {
     const errors: { name?: string; email?: string; phone?: string } = {};
@@ -188,25 +197,9 @@ export const BookTourPage: React.FC<BookTourPageProps> = ({
   };
 
   const handleFinalConfirm = () => {
-    const randomRef = `LCT-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-    setBookingRef(randomRef);
     setIsReviewOpen(false);
-    setIsSubmitted(true);
+    setIsWhatsAppReady(true);
     smoothScrollTo(180, { duration: 1.2 });
-  };
-
-  const handleDirectWhatsApp = () => {
-    const message = encodeURIComponent(
-      `Hello Lali Ceylon Tours! I would like to reserve "${selectedPackage.name}" (${selectedPackage.duration}).
-Travel Date: ${formattedDate}
-Travelers: ${adultsCount} Adults${childrenCount > 0 ? `, ${childrenCount} Children` : ''}
-Tour Type: ${tourType}
-My Name: ${fullName}
-Email: ${email}
-Phone: ${countryCode} ${phone}
-Reference: ${bookingRef || 'Direct Web Inquiry'}`
-    );
-    window.open(`https://wa.me/94771234567?text=${message}`, '_blank');
   };
 
   return (
@@ -265,7 +258,7 @@ Reference: ${bookingRef || 'Direct Web Inquiry'}`
         {/* =========================================================================
             CONFIRMATION STATE (When Submitted)
             ========================================================================= */}
-        {isSubmitted ? (
+        {isWhatsAppReady ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -277,18 +270,18 @@ Reference: ${bookingRef || 'Direct Web Inquiry'}`
             </div>
 
             <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(16,185,129,0.3)]">
-              <CheckCircle2 className="w-7 h-7" />
+              <WhatsAppIcon className="w-7 h-7" />
             </div>
 
             <div>
               <span className="text-xs uppercase tracking-widest text-cyan-400 font-mono font-bold">
-                Booking Reservation Received · {bookingRef}
+                WHATSAPP MESSAGE PREPARED
               </span>
               <h2 className="text-2xl sm:text-3xl font-serif text-white font-normal mt-2">
-                Your Ceylon Journey is Being Handcrafted!
+                Finish Sending Your Inquiry
               </h2>
               <p className="text-xs sm:text-sm text-slate-300 font-light mt-2 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-white font-semibold">{fullName}</strong>. Our senior expedition concierge has received your request for <strong className="text-cyan-300">{selectedPackage.name}</strong> on <strong className="text-white">{formattedDate}</strong>.
+                Thank you, <strong className="text-white font-semibold">{fullName}</strong>. Your inquiry details are ready. Use the button below to open WhatsApp and send them to our team.
               </p>
             </div>
 
@@ -313,20 +306,21 @@ Reference: ${bookingRef || 'Direct Web Inquiry'}`
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={handleDirectWhatsApp}
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>Instant WhatsApp Concierge</span>
-              </button>
+                <WhatsAppIcon className="w-4 h-4" />
+                <span>Open WhatsApp Message</span>
+              </a>
               <button
                 type="button"
-                onClick={() => setIsSubmitted(false)}
+                onClick={() => setIsWhatsAppReady(false)}
                 className="w-full sm:w-auto px-6 py-3 rounded-full border border-slate-700 hover:border-slate-500 text-slate-300 text-xs tracking-wider transition-colors cursor-pointer"
               >
-                Make Another Reservation
+                Edit Booking Details
               </button>
             </div>
           </motion.div>
@@ -387,7 +381,14 @@ Reference: ${bookingRef || 'Direct Web Inquiry'}`
 
                       {/* Dropdown Options List */}
                       {isDropdownOpen && (
-                        <div className="absolute left-0 right-0 top-full mt-2 bg-[#061726] border border-cyan-500/30 rounded-2xl shadow-2xl p-2 z-30 max-h-72 overflow-y-auto backdrop-blur-xl">
+                        <div
+                          data-lenis-prevent
+                          data-lenis-prevent-wheel
+                          data-lenis-prevent-touch
+                          onWheel={(event) => event.stopPropagation()}
+                          onTouchMove={(event) => event.stopPropagation()}
+                          className="absolute left-0 right-0 top-full mt-2 bg-[#061726] border border-cyan-500/30 rounded-2xl shadow-2xl p-2 z-30 max-h-72 overflow-y-auto overscroll-contain backdrop-blur-xl"
+                        >
                           {TOUR_PACKAGES.map((pkg) => (
                             <div
                               key={pkg.id}
@@ -715,82 +716,19 @@ Reference: ${bookingRef || 'Direct Web Inquiry'}`
         )}
       </div>
 
-      {/* =========================================================================
-          REVIEW & CONFIRMATION MODAL
-          ========================================================================= */}
-      <AnimatePresence>
-        {isReviewOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-lg rounded-3xl bg-[#081827] border border-cyan-500/30 p-6 sm:p-8 shadow-2xl space-y-6"
-            >
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div>
-                  <h3 className="text-lg font-serif text-white font-bold">
-                    Review Your Reservation
-                  </h3>
-                  <p className="text-xs text-slate-400">
-                    Please confirm your journey details before submitting
-                  </p>
-                </div>
-                <button
-                  onClick={() => setIsReviewOpen(false)}
-                  className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="space-y-3 text-xs">
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Tour Package:</span>
-                  <span className="text-white font-medium">{selectedPackage.name}</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Travel Date:</span>
-                  <span className="text-white font-medium">{formattedDate}</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Party:</span>
-                  <span className="text-white font-medium">{adultsCount} Adults{childrenCount > 0 ? `, ${childrenCount} Children` : ''}</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Tour Style:</span>
-                  <span className="text-cyan-300 font-medium">{tourType}</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Guest:</span>
-                  <span className="text-white font-medium">{fullName} ({countryCode} {phone})</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-400">
-                  <span>Email:</span>
-                  <span className="text-white font-medium">{email}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsReviewOpen(false)}
-                  className="flex-1 px-4 py-2.5 rounded-full border border-slate-700 text-slate-300 hover:text-white text-xs transition-colors cursor-pointer"
-                >
-                  Edit Details
-                </button>
-                <button
-                  type="button"
-                  onClick={handleFinalConfirm}
-                  className="flex-1 px-4 py-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-sky-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] cursor-pointer"
-                >
-                  Confirm Reservation
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <BookingReviewModal
+        isOpen={isReviewOpen}
+        tourPackageName={selectedPackage.name}
+        travelDate={formattedDate}
+        partySummary={`${adultsCount} Adults${childrenCount > 0 ? `, ${childrenCount} Children` : ''}`}
+        tourType={tourType}
+        guestName={fullName}
+        phoneNumber={`${countryCode} ${phone}`}
+        email={email}
+        whatsAppUrl={whatsAppUrl}
+        onClose={() => setIsReviewOpen(false)}
+        onContinue={handleFinalConfirm}
+      />
 
       {/* =========================================================================
           SEAMLESS CURVY WAVE BOUNDARY LEADING DIRECTLY INTO THE FOOTER

@@ -5,12 +5,12 @@ import {
   MapPin,
   ArrowRight,
   CheckCircle2,
-  MessageCircle,
   Sparkles,
   Car,
   ShieldCheck,
 } from 'lucide-react';
 import { StadiumTourPackage } from './ToursPage';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 interface TourDetailModalProps {
   tour: StadiumTourPackage | null;
@@ -200,7 +200,7 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
               className="min-h-[44px] py-2.5 px-3 sm:px-3.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 active:bg-emerald-500/30 text-emerald-300 border border-emerald-400/30 text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95"
               title="Chat directly on WhatsApp"
             >
-              <MessageCircle className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-emerald-400" />
+              <WhatsAppIcon className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               <span>WhatsApp</span>
             </a>
 

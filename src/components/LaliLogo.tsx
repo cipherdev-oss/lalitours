@@ -22,10 +22,10 @@ export const LaliLogo: React.FC<LaliLogoProps> = ({
 
   // Standalone Accurate Island Mark with Sigiriya Rock, Hiker & Palms
   const IslandMark = ({ sizeClass = 'w-10 h-10' }: { sizeClass?: string }) => (
-    <div className={`relative ${sizeClass} shrink-0 select-none flex items-center justify-center`}>
+    <div className={`relative ${sizeClass} shrink-0 select-none flex items-center justify-center overflow-hidden rounded-full bg-white`}>
       <svg
         viewBox="0 0 600 620"
-        className={`w-full h-full drop-shadow-[0_4px_16px_rgba(6,182,212,0.35)] ${
+        className={`hidden w-full h-full drop-shadow-[0_4px_16px_rgba(6,182,212,0.35)] ${
           animated ? 'animate-pulse duration-1000' : ''
         }`}
       >
@@ -158,6 +158,14 @@ export const LaliLogo: React.FC<LaliLogoProps> = ({
           strokeOpacity="0.85"
         />
       </svg>
+      <img
+        src="/img/lali-logo-transparent.png"
+        alt=""
+        aria-hidden="true"
+        className={`absolute top-0 left-1/2 w-[180%] max-w-none -translate-x-1/2 ${
+          animated ? 'animate-pulse duration-1000' : ''
+        }`}
+      />
     </div>
   );
 
@@ -171,7 +179,7 @@ export const LaliLogo: React.FC<LaliLogoProps> = ({
     return (
       <div className={`flex items-center gap-2.5 sm:gap-3.5 select-none ${className}`}>
         {/* Island Icon Mark */}
-        <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full p-1 bg-[#061826]/90 border border-cyan-400/40 shadow-[0_0_15px_rgba(6,182,212,0.35)] flex items-center justify-center shrink-0">
+        <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border border-white/80 shadow-[0_0_15px_rgba(6,182,212,0.35)] flex items-center justify-center shrink-0 overflow-hidden">
           <IslandMark sizeClass="w-8 h-8 sm:w-10 sm:h-10" />
         </div>
 
@@ -207,41 +215,10 @@ export const LaliLogo: React.FC<LaliLogoProps> = ({
 
   // 3. Full Vertical Variant (Footer, About Us, Splash Screen)
   return (
-    <div className={`flex flex-col items-center text-center select-none ${className}`}>
-      {/* Centered Graphic Emblem with Sigiriya & Hiker */}
-      <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-2">
-        <IslandMark sizeClass="w-full h-full" />
-      </div>
-
-      {/* "Lali" calligraphic brush lettering */}
-      <div
-        className="font-serif italic text-4xl sm:text-5xl font-black tracking-tight leading-none drop-shadow-md"
-        style={{ color: textColor }}
-      >
-        Lali
-      </div>
-
-      {/* "CEYLON TOURS" widely tracked */}
-      <div
-        className="font-montserrat font-extrabold text-sm sm:text-base tracking-[0.28em] uppercase mt-1.5"
-        style={{ color: accentColor }}
-      >
-        CEYLON TOURS
-      </div>
-
-      {/* "— More Than Just a Trip —" */}
-      {showTagline && (
-        <div className="flex items-center gap-2.5 mt-2.5">
-          <div className="w-8 sm:w-12 h-[1.5px] bg-cyan-400/50" />
-          <span
-            className="font-serif italic font-semibold text-xs sm:text-sm tracking-widest"
-            style={{ color: taglineColor }}
-          >
-            More Than Just a Trip
-          </span>
-          <div className="w-8 sm:w-12 h-[1.5px] bg-cyan-400/50" />
-        </div>
-      )}
-    </div>
+    <img
+      src="/img/lali-logo.png"
+      alt="Lali Ceylon Tours — More Than Just a Trip"
+      className={`w-56 max-w-full h-auto object-contain ${className}`}
+    />
   );
 };

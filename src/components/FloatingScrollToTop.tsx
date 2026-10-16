@@ -52,7 +52,7 @@ export const FloatingScrollToTop: React.FC = () => {
 
   return (
     <div
-      className={`fixed bottom-6 right-5 sm:right-8 z-40 transition-all duration-500 ease-out ${
+      className={`fixed bottom-6 left-5 sm:left-8 z-40 transition-all duration-500 ease-out ${
         visible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-6 pointer-events-none'
@@ -103,7 +103,7 @@ export const FloatingScrollToTop: React.FC = () => {
         <ArrowUp className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
 
         {/* Subtle tooltip on hover */}
-        <span className="absolute right-full mr-3 px-2.5 py-1 rounded-md bg-slate-900/95 border border-cyan-500/30 text-[11px] font-mono tracking-wider text-cyan-200 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg hidden sm:block">
+        <span className="absolute left-full ml-3 px-2.5 py-1 rounded-md bg-slate-900/95 border border-cyan-500/30 text-[11px] font-mono tracking-wider text-cyan-200 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg hidden sm:block">
           Glide to Top
         </span>
       </button>

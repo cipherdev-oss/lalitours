@@ -24,7 +24,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: 'World-class point breaks. Laid-back surf lifestyle.',
     description: 'A crescent of golden sand where Indian Ocean swells peel endlessly along pristine right-hand reef points. Dawn patrol sessions, barefoot beachfront cafes, stilt fishermen at sunrise, and unforgettable golden hours.',
     liveExperience: 'Catching sunrise glass waves with local surf coaches and dining barefoot on fresh catch grilled over coconut husk fires.',
-    image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/arugam-bay-surf.webp',
   },
   {
     id: 'chp-2',
@@ -35,7 +35,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: "One of the world's most unforgettable train journeys.",
     description: 'Hang out of the iconic blue carriage doorway as the train glides over colonial stone viaducts, piercing through rolling cloud forests, mountain tea slopes, and plunging valleys tended by generations of master tea pluckers.',
     liveExperience: 'Stepping off at 1,900m altitude to taste hand-plucked Single Estate Ceylon Orange Pekoe beside a crackling colonial stone fireplace.',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/9.webp',
   },
   {
     id: 'chp-3',
@@ -46,7 +46,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: '2,500 years of documented dynasties and sheer royal marvels.',
     description: 'A 200-meter sheer monolith carved into King Kashyapa’s palace citadel. Walk past giant lion paws, gaze at 1,500-year-old celestial maiden frescoes, and explore ancient hydraulic lakes so vast they have tides.',
     liveExperience: 'Cycling through moonlit brick stupas as fragrant temple frangipani blossoms fall onto ancient stone walkways.',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/sigiriya.webp',
   },
   {
     id: 'chp-4',
@@ -57,7 +57,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: 'Enter the wilderness where elephants and leopards roam freely.',
     description: 'Thick monsoon scrublands bordering untamed ocean beaches. Track leopards lounging on sun-warmed granite rocks, sloth bears digging termite mounds, and majestic elephant herds gathering by freshwater reservoirs.',
     liveExperience: 'Open-top 4x4 safari at dawn tracking fresh leopard pugmarks along secluded jungle waterholes.',
-    image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/yala.jpg',
   },
   {
     id: 'chp-5',
@@ -68,7 +68,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: 'Sacred Bodhi trees, butter-lamp twilight, and hypnotic drum pulses.',
     description: 'The spiritual heart of Sri Lanka. At the Temple of the Sacred Tooth Relic, golden caskets, silver conch shells, and the thunderous polyrhythms of Geta Beraya drums accompany barefoot dancers performing acrobatics over red-hot coconut embers.',
     liveExperience: 'Offering white lotus buds during evening temple pooja as silver trumpets echo across the sacred Kandy lake.',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/kandy.jpg',
   },
   {
     id: 'chp-6',
@@ -79,7 +79,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: 'Colonial architecture, tiny cafés, Ceylon sapphires and ocean sunsets.',
     description: 'Cobblestoned 17th-century ramparts where ocean waves crash against coral walls. Discover fragrant cinnamon attics, hand-carved demon masks, and world-renowned cornflower-blue Ceylon sapphires.',
     liveExperience: 'Walking the bastion walls at golden hour with spiced coconut water, watching daredevil locals dive into the surging turquoise sea.',
-    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/galle.jpg',
   },
   {
     id: 'chp-7',
@@ -90,7 +90,7 @@ const ISLAND_CHAPTERS: ExperienceSlide[] = [
     subtext: 'Golden beaches, palm hills, and the generous smile of Ayubowan.',
     description: 'Sri Lankan hospitality is a genuine art. Step into open courtyards where elders greet you with palms pressed together (May you live long), sharing clay-pot curries before sailing out to where the magnificent Blue Whale surfaces.',
     liveExperience: 'Sharing a banana-leaf lunch cooked on a clay woodfire hearth with a local family under swaying king coconut palms.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/mirissa.webp',
   },
 ];
 
@@ -104,7 +104,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: '2,500 years of documented dynasties and sky stupas.',
     description: 'Flourishing when ancient Rome was in its infancy, Sri Lanka’s ancient capitals featured monumental brick stupas taller than the pyramids of Egypt and vast artificial reservoirs (wewas) with gravity-defying canals.',
     liveExperience: 'Cycling between colossal 2,000-year-old stupas at dusk as monk chants drift across lotus-covered waterways.',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/ancient-stupa.webp',
   },
   {
     id: 'cul-2',
@@ -115,7 +115,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: 'The southern branch of the original Bodhi tree, tended for 23 centuries.',
     description: 'In Sri Lanka, history is not locked in glass cabinets. It breathes in nightly butter lamps, saffron-robed monks, white-clad devotees, and the fragrance of crushed jasmine on ancient stone altars.',
     liveExperience: 'Participating in the dawn pirith ceremony with aromatic oil lamps and lotus blossom offerings.',
-    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/kandy.jpg',
   },
   {
     id: 'cul-3',
@@ -126,7 +126,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: 'Acrobatic leaps, silver headdresses, and hypnotic drum pulses.',
     description: 'Born in rituals to appease island deities, Kandyan dance pairs athletic somersaults and shimmering silver headdresses with the polyrhythmic resonance of the double-ended Geta Beraya drum.',
     liveExperience: 'Backstage access with master dancers tuning hand-stretched goat-hide drums beside fire-lit courtyards.',
-    image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/kandyan-dance.webp',
   },
   {
     id: 'cul-4',
@@ -137,7 +137,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: 'A thousand whip-crackers, fire-jugglers, and regal caparisoned tuskers.',
     description: 'During the full moon of Esala, Kandy erupts into Asia’s most spectacular nocturnal pageant: hundreds of barefoot acrobats, torch-bearers whirling fiery wheels, and majestic tuskers bearing golden caskets.',
     liveExperience: 'Feeling the heat of flaming torches and the ground vibrating under 500 ceremonial master drummers.',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/perahera-fire.webp',
   },
   {
     id: 'cul-5',
@@ -148,7 +148,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: 'Hand-carved demon masks, wax-resist silks, and world-renowned gems.',
     description: 'Carvers shape Kaduru wood into fierce Raksha masks to ward off misfortune, while in Ratnapura (City of Gems), artisanal miners unearth royal cornflower-blue sapphires that have adorned royal crowns for millennia.',
     liveExperience: 'Carving and painting your own miniature protective mask using authentic botanical vegetable dyes.',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/ambalangoda-masks.webp',
   },
   {
     id: 'cul-6',
@@ -159,7 +159,7 @@ const CULTURE_PILLARS: ExperienceSlide[] = [
     subtext: 'Open courtyards, clay woodfires, sweet milk tea, and boundless kindness.',
     description: 'Sri Lankan hospitality is effortless warmth. Enter rural farming hamlets where every traveler is treated like honored family with the blessing of "Ayubowan" (May you live long) and sweet king coconut.',
     liveExperience: 'Grinding fresh sambol on a traditional stone miris gala and enjoying lunch under clay-tiled village eaves.',
-    image: 'https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1200&q=75',
+    image: '/img/experiences/village-cooking.webp',
   },
 ];
 
@@ -342,7 +342,7 @@ export const SevenExperiences: React.FC<SevenExperiencesProps> = ({ onOpenBookin
                 }`}
               >
                 <img
-                  src={exp.image.replace('w=1200&q=75', 'w=350&q=70')}
+                  src={exp.image}
                   alt={exp.location}
                   referrerPolicy="no-referrer"
                   loading="lazy"

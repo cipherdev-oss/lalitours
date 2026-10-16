@@ -67,7 +67,18 @@ export const HeroViewer: React.FC<HeroViewerProps> = ({
     onSelectDestination(destinations[prevIdx]);
   };
 
-  // Auto-play timer: advances cleanly once every 6 seconds without continuous re-renders
+  // Preload only the next hero image so it is ready before the transition.
+  useEffect(() => {
+    const nextSlide = destinations[(safeIndex + 1) % destinations.length];
+    if (!nextSlide?.heroImage) return;
+
+    const image = new Image();
+    image.decoding = 'async';
+    image.src = nextSlide.heroImage;
+    image.decode?.().catch(() => undefined);
+  }, [destinations, safeIndex]);
+
+  // Keep each scene visible while making the next transition feel responsive.
   useEffect(() => {
     if (!isPlaying || !isHeroVisible) {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -77,7 +88,7 @@ export const HeroViewer: React.FC<HeroViewerProps> = ({
     timerRef.current = setTimeout(() => {
       const nextIdx = (safeIndex + 1) % destinations.length;
       onSelectDestination(destinations[nextIdx]);
-    }, 6000);
+    }, 4200);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
@@ -116,13 +127,13 @@ export const HeroViewer: React.FC<HeroViewerProps> = ({
       className="relative min-h-screen w-full overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-8 sm:pb-12 lg:pb-14 px-6 sm:px-10 lg:px-14 bg-sky-950/20 text-white select-none touch-pan-y gpu-layer"
     >
       {/* Cinematic Full-Bleed Background Image with Smooth Cross-Fade and Soft Light Blue/White Tones */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={activeDestination.id}
-          initial={{ opacity: 0, scale: 1.06 }}
+          initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 z-0 cursor-pointer"
           onClick={() => nextDestination()}
           title="Tap anywhere to advance scenery"

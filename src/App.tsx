@@ -8,6 +8,7 @@ import { SevenExperiences } from './components/SevenExperiences';
 import { BeyondThePostcard } from './components/BeyondThePostcard';
 import { Footer } from './components/Footer';
 import { FloatingScrollToTop } from './components/FloatingScrollToTop';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import {
   initSmoothScroll,
   destroySmoothScroll,
@@ -23,11 +24,11 @@ const ToursPage = lazy(() => import('./components/ToursPage').then(m => ({ defau
 const AboutUsPage = lazy(() => import('./components/AboutUsPage').then(m => ({ default: m.AboutUsPage })));
 const BookTourPage = lazy(() => import('./components/BookTourPage').then(m => ({ default: m.BookTourPage })));
 const IslandInteractiveMap = lazy(() => import('./components/IslandInteractiveMap').then(m => ({ default: m.IslandInteractiveMap })));
+const HiddenSpotGuidePage = lazy(() => import('./components/HiddenSpotGuidePage').then(m => ({ default: m.HiddenSpotGuidePage })));
 
 // Code-split on-demand modals
 const PracticalTravelConcierge = lazy(() => import('./components/PracticalTravelConcierge').then(m => ({ default: m.PracticalTravelConcierge })));
 const SmoothLightbox = lazy(() => import('./components/SmoothLightbox').then(m => ({ default: m.SmoothLightbox })));
-const ItineraryModal = lazy(() => import('./components/ItineraryModal').then(m => ({ default: m.ItineraryModal })));
 
 import { ModernPageLoader } from './components/ModernPageLoader';
 
@@ -38,7 +39,10 @@ const PageLoader = () => (
 );
 
 export default function App() {
-  const [destinations] = useState<Destination[]>(DESTINATIONS);
+  const destinations = DESTINATIONS;
+  const hiddenSpotSlug = typeof window !== 'undefined'
+    ? window.location.pathname.match(/^\/hidden-serendipity\/([^/]+)\/?$/)?.[1]
+    : undefined;
   const [activeDestination, setActiveDestination] = useState<Destination>(DESTINATIONS[0]);
   const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
 
@@ -135,28 +139,17 @@ export default function App() {
     initialIndex: 0,
   });
 
-  // Booking / Inquiry Modal State
-  const [bookingState, setBookingState] = useState<{
-    isOpen: boolean;
-    destination: Destination | null;
-    customNote?: string;
-  }>({
-    isOpen: false,
-    destination: null,
-    customNote: '',
-  });
-
   // Practical Travel Concierge Modal State
   const [isConciergeOpen, setIsConciergeOpen] = useState<boolean>(false);
 
   // Pause smooth scroll when modal overlay is open to avoid background conflict
   useEffect(() => {
-    if (isConciergeOpen || lightboxState.isOpen || bookingState.isOpen) {
+    if (isConciergeOpen || lightboxState.isOpen) {
       pauseSmoothScroll();
     } else {
       resumeSmoothScroll();
     }
-  }, [isConciergeOpen, lightboxState.isOpen, bookingState.isOpen]);
+  }, [isConciergeOpen, lightboxState.isOpen]);
 
   // Open Lightbox handler
   const handleOpenLightbox = (imageUrl: string, index: number, targetDest?: Destination) => {
@@ -176,7 +169,11 @@ export default function App() {
   const [bookingPrefill, setBookingPrefill] = useState<{
     tourName?: string;
     notes?: string;
-  }>({});
+  }>(() => {
+    if (typeof window === 'undefined') return {};
+    const interest = new URLSearchParams(window.location.search).get('interest');
+    return interest ? { notes: `I am interested in adding ${interest} to my trip.` } : {};
+  });
 
   // Open Booking handler - navigates to the dedicated Book Your Tour page
   const handleOpenBooking = (destOrNotes?: Destination | string) => {
@@ -195,6 +192,14 @@ export default function App() {
     setBookingPrefill({ tourName, notes });
     handleNavigate('book');
   };
+
+  if (hiddenSpotSlug) {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <HiddenSpotGuidePage slug={decodeURIComponent(hiddenSpotSlug)} />
+      </Suspense>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0f172a] via-[#131d35] to-[#0a1420] text-slate-100 flex flex-col font-sans selection:bg-cyan-400 selection:text-slate-950 relative">
@@ -228,7 +233,6 @@ export default function App() {
               destinations={destinations}
               activeDestination={activeDestination}
               onSelectDestination={setActiveDestination}
-              onOpenLightbox={handleOpenLightbox}
               onOpenBookingFor={(destOrNote) => handleOpenBooking(destOrNote)}
               onNavigateHome={() => handleNavigate('home')}
             />
@@ -315,18 +319,11 @@ export default function App() {
           />
         )}
 
-        {bookingState.isOpen && (
-          <ItineraryModal
-            isOpen={bookingState.isOpen}
-            destination={bookingState.destination}
-            destinations={destinations}
-            onClose={() => setBookingState((prev) => ({ ...prev, isOpen: false }))}
-          />
-        )}
       </Suspense>
 
       {/* Floating Smooth Glide to Top Button with Circular Progress */}
       <FloatingScrollToTop />
+      <FloatingWhatsApp />
     </div>
   );
 }

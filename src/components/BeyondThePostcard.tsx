@@ -1,89 +1,15 @@
 import React, { useState } from 'react';
 import { WaveDivider } from './WaveDivider';
 import { Compass, ArrowRight, Eye, Sparkles, MapPin } from 'lucide-react';
-
-interface HiddenSpot {
-  name: string;
-  region: string;
-  secret: string;
-  tagline: string;
-  image: string;
-  badge: string;
-}
-
-const HIDDEN_SPOTS: HiddenSpot[] = [
-  {
-    name: 'Jaffna & Islands',
-    region: 'Far North',
-    secret: 'Towering saffron Hindu gopurams, quiet lagoons, and ancient palmyrah forests where tourists are rare and hospitality is legendary.',
-    tagline: 'The vibrant Tamil cultural kingdom of the north.',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
-    badge: 'Cultural Frontier',
-  },
-  {
-    name: 'Knuckles Mountain Range',
-    region: 'Central Massif',
-    secret: 'Rugged mist-veiled peaks shaped like clenched fists. Cloud forests home to rare orchids, secret river pools, and isolated cardamom farming hamlets.',
-    tagline: 'Untamed hiking with zero crowds.',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80',
-    badge: 'Trekker Sanctuary',
-  },
-  {
-    name: 'Kalpitiya Peninsula',
-    region: 'Northwest Shore',
-    secret: 'A narrow finger of land bordered by a massive flat-water lagoon and the ocean, hosting dolphin mega-pods and world-class kiteboarding winds.',
-    tagline: 'Dolphins, sandbars, and howling kite winds.',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
-    badge: 'Kite & Marine Haven',
-  },
-  {
-    name: 'Nilaveli & Pigeon Island',
-    region: 'Eastern Coastline',
-    secret: 'Powdery bone-white beaches meeting aquamarine waters where blacktip reef sharks and sea turtles glide through protected coral gardens.',
-    tagline: 'Untouched eastern marine paradise.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-    badge: 'Coral Sanctuary',
-  },
-  {
-    name: 'Hiriketiya Horseshoe Bay',
-    region: 'Deep South',
-    secret: 'A lush jungle-wrapped crescent cove with gentle peeling waves, wooden treehouse smoothie shacks, and sun-dappled yoga lofts.',
-    tagline: 'The bohemian ocean hideaway.',
-    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
-    badge: 'Boho Surf Cove',
-  },
-  {
-    name: 'Riverston & The Gap',
-    region: 'Matale Highlands',
-    secret: 'Known as the windy gap where sudden cliff drops reveal panoramic cloud valleys, miniature Worlds End viewpoints, and rushing waterfalls.',
-    tagline: 'High-altitude ridges kissed by clouds.',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
-    badge: 'Highland Secret',
-  },
-  {
-    name: 'Gal Oya National Park',
-    region: 'Eastern Interior',
-    secret: 'Sri Lanka’s only boat safari park. Watch wild elephants swim between lush forested islands across the vast Senanayake Samudra reservoir.',
-    tagline: 'Swimming elephants on inland seas.',
-    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80',
-    badge: 'Boat Safaris',
-  },
-  {
-    name: 'Delft Island (Neduntheevu)',
-    region: 'Palk Strait',
-    secret: 'A windswept island of wild Portuguese ponies descended from 17th-century horses, ancient baobab trees, and fences built entirely of bleached coral rock.',
-    tagline: 'Coral fences and wild horses.',
-    image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80',
-    badge: 'Living Time Capsule',
-  },
-];
+import { HIDDEN_SPOT_CARDS } from '../data/hiddenSpotCards';
+import type { HiddenSpotCard } from '../data/hiddenSpotCards';
 
 interface BeyondThePostcardProps {
   onOpenBooking?: (spotName?: string) => void;
 }
 
 export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBooking }) => {
-  const [selectedSpot, setSelectedSpot] = useState<HiddenSpot | null>(null);
+  const [selectedSpot, setSelectedSpot] = useState<HiddenSpotCard | null>(null);
 
   return (
     <section id="beyond-postcard" className="w-full py-20 sm:py-28 bg-[#040d16] text-white relative overflow-hidden section-lazy touch-pan-y">
@@ -110,10 +36,15 @@ export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBook
 
         {/* 8 Hidden Gems Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {HIDDEN_SPOTS.map((spot) => (
-            <div
-              key={spot.name}
-              onClick={() => setSelectedSpot(spot)}
+          {HIDDEN_SPOT_CARDS.map((spot) => (
+            <a
+              key={spot.slug}
+              href={`/hidden-serendipity/${spot.slug}/`}
+              onClick={(event) => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                setSelectedSpot(spot);
+              }}
               className="group bg-[#081b2b] rounded-2xl overflow-hidden border border-slate-700/60 hover:border-cyan-400/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col cursor-pointer"
             >
               {/* Photo Frame */}
@@ -150,25 +81,27 @@ export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBook
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-cyan-400">
-                  <span className="font-semibold text-[11px] uppercase tracking-wider">
-                    Uncover Secret
+                <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between gap-2 text-xs text-cyan-300">
+                  <span className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-wider">
+                    <Eye aria-hidden="true" className="w-3.5 h-3.5" />
+                    Preview guide
                   </span>
-                  <span className="group-hover:translate-x-1 transition-transform">
-                    →
+                  <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
         {/* Modal Detail for Selected Spot */}
         {selectedSpot && (
           <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-[#091f30] rounded-3xl max-w-xl w-full border border-cyan-400/40 p-6 sm:p-8 shadow-2xl relative animate-fadeIn">
+            <div role="dialog" aria-modal="true" aria-labelledby="hidden-spot-preview-title" className="bg-[#091f30] rounded-3xl max-w-xl w-full border border-cyan-400/40 p-6 sm:p-8 shadow-2xl relative animate-fadeIn">
               <button
                 onClick={() => setSelectedSpot(null)}
+                aria-label="Close preview"
                 className="absolute top-4 right-4 text-slate-400 hover:text-white text-sm bg-black/40 w-8 h-8 rounded-full flex items-center justify-center"
               >
                 ✕
@@ -189,7 +122,7 @@ export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBook
               <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">
                 {selectedSpot.region}
               </span>
-              <h3 className="text-2xl font-archivo font-extrabold text-white mt-1">
+              <h3 id="hidden-spot-preview-title" className="text-2xl font-archivo font-extrabold text-white mt-1">
                 {selectedSpot.name}
               </h3>
               <p className="text-sm font-serif italic text-cyan-200/90 mt-1">
@@ -200,7 +133,14 @@ export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBook
                 {selectedSpot.secret}
               </p>
 
-              <div className="mt-6 flex gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={`/hidden-serendipity/${selectedSpot.slug}/`}
+                  className="flex-1 py-3 rounded-xl border border-cyan-500/50 text-cyan-100 hover:bg-cyan-950/60 font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
+                >
+                  Read full guide
+                  <ArrowRight className="w-4 h-4" />
+                </a>
                 <button
                   onClick={() => {
                     const spot = selectedSpot;

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   Search,
   Heart,
@@ -17,12 +17,12 @@ import {
 } from 'lucide-react';
 import { Destination } from '../types';
 import { WaveDivider } from './WaveDivider';
+import { pauseSmoothScroll, resumeSmoothScroll } from '../utils/smoothScroll';
 
 interface DestinationsPageProps {
   destinations: Destination[];
   activeDestination: Destination;
   onSelectDestination: (dest: Destination) => void;
-  onOpenLightbox: (imageUrl: string, index: number, dest?: Destination) => void;
   onOpenBookingFor: (destOrNote?: Destination | string) => void;
   onNavigateHome: () => void;
 }
@@ -77,8 +77,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '5 Days / 4 Nights',
     category: 'beach',
     categoryLabel: 'BEACH',
-    heroImage: '/img/mirissa.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/mirissa.webp',
+    fallbackImage: '/img/mirissa.webp',
     highlights: ['Blue Whale Migrations', 'Coconut Tree Hill Sunset', 'Secret Beach Cove'],
     bestSeason: 'Nov – Apr'
   },
@@ -91,8 +91,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '4 Days / 3 Nights',
     category: 'culture',
     categoryLabel: 'CULTURE',
-    heroImage: '/img/sigiriya.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/sigiriya.webp',
+    fallbackImage: '/img/sigiriya.webp',
     highlights: ['UNESCO Sky Monolith', 'Mirror Wall Frescoes', 'Royal Hydraulic Gardens'],
     bestSeason: 'Dec – Apr & Jul – Sep'
   },
@@ -105,8 +105,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '4 Days / 3 Nights',
     category: 'hills',
     categoryLabel: 'HILLS',
-    heroImage: '/img/ella.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/9.webp',
+    fallbackImage: '/img/9.webp',
     highlights: ['1921 Stone Viaduct', 'Blue Train Scenic Ride', 'Little Adam’s Peak'],
     bestSeason: 'Dec – May'
   },
@@ -120,7 +120,7 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     category: 'wildlife',
     categoryLabel: 'WILDLIFE',
     heroImage: '/img/yala.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1200&q=85',
+    fallbackImage: '/img/yala.jpg',
     highlights: ['High Leopard Density', 'Elephant Family Herds', 'Coastal Dunes & Lagoons'],
     bestSeason: 'Feb – Jul'
   },
@@ -133,8 +133,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '3 Days / 2 Nights',
     category: 'hills',
     categoryLabel: 'HILLS',
-    heroImage: '/img/nuwara.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/n.webp',
+    fallbackImage: '/img/n.webp',
     highlights: ['Single-Origin Tea Tasting', 'Horton Plains World’s End', 'Alpine Gregory Lake'],
     bestSeason: 'Dec – Apr'
   },
@@ -147,8 +147,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '3 Days / 2 Nights',
     category: 'culture',
     categoryLabel: 'CULTURE',
-    heroImage: '/img/galle.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/fort.webp',
+    fallbackImage: '/img/fort.webp',
     highlights: ['Dutch UNESCO Ramparts', 'Galle Lighthouse Sunset', 'Artisan Boutiques & Cafes'],
     bestSeason: 'Oct – Apr'
   },
@@ -175,8 +175,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '4 Days / 3 Nights',
     category: 'beach',
     categoryLabel: 'BEACH',
-    heroImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
-    fallbackImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/map/trincomalee-koneswaram.webp',
+    fallbackImage: '/img/map/trincomalee-koneswaram.webp',
     highlights: ['Pigeon Island Snorkeling', 'Koneswaram Cliff Temple', 'Nilaveli Calm Bay'],
     bestSeason: 'Mar – Oct'
   },
@@ -189,8 +189,8 @@ export const ARCH_DESTINATIONS_DATA: ArchPlaceCardData[] = [
     duration: '4 Days / 3 Nights',
     category: 'adventure',
     categoryLabel: 'ADVENTURE',
-    heroImage: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=85',
-    fallbackImage: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=85',
+    heroImage: '/img/experiences/arugam-bay-surf.webp',
+    fallbackImage: '/img/experiences/arugam-bay-surf.webp',
     highlights: ['World Surf Championship Breaks', 'Elephant Rock Sunset', 'Kumana National Park'],
     bestSeason: 'May – Sep'
   }
@@ -202,13 +202,13 @@ const MORE_DESTINATIONS = [
     id: 'unawatuna',
     name: 'Unawatuna',
     province: 'Southern Province',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=300&q=80'
+    image: '/img/mirissa.webp'
   },
   {
     id: 'nuwara-eliya',
     name: 'Nuwara Eliya',
     province: 'Central Highlands',
-    image: '/img/nuwara.jpg'
+    image: '/img/n.webp'
   },
   {
     id: 'kandy',
@@ -220,19 +220,19 @@ const MORE_DESTINATIONS = [
     id: 'trincomalee',
     name: 'Trincomalee',
     province: 'Eastern Province',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80'
+    image: '/img/map/trincomalee-koneswaram.webp'
   },
   {
     id: 'arugam-bay',
     name: 'Arugam Bay',
     province: 'Eastern Province',
-    image: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=300&q=80'
+    image: '/img/experiences/arugam-bay-surf.webp'
   },
   {
     id: 'jaffna',
     name: 'Jaffna',
     province: 'Northern Province',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=300&q=80'
+    image: '/img/map/jaffna-nallur-temple.webp'
   }
 ];
 
@@ -240,13 +240,27 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
   destinations: _destinations,
   activeDestination: _activeDestination,
   onSelectDestination: _onSelectDestination,
-  onOpenLightbox,
   onOpenBookingFor,
   onNavigateHome: _onNavigateHome
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
   const [likedCardIds, setLikedCardIds] = useState<Record<string, boolean>>({});
+  const [previewCard, setPreviewCard] = useState<ArchPlaceCardData | null>(null);
+
+  useEffect(() => {
+    if (!previewCard) return;
+
+    pauseSmoothScroll();
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setPreviewCard(null);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      resumeSmoothScroll();
+    };
+  }, [previewCard]);
 
   // Toggle favorite / wishlist heart
   const toggleLike = (id: string, e: React.MouseEvent) => {
@@ -454,8 +468,17 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                       Delicate outer contour line with inner arched photograph
                       ------------------------------------------------------------- */}
                   <div
-                    onClick={() => onOpenLightbox(card.heroImage, 0)}
-                    className="relative w-full max-w-[360px] p-2.5 sm:p-3 rounded-t-[170px] sm:rounded-t-[200px] rounded-b-3xl border border-[#d4be9f]/35 hover:border-[#f5d15c]/80 bg-[#061827]/60 backdrop-blur-md transition-all duration-500 hover:shadow-[0_15px_45px_rgba(245,209,92,0.18)] shadow-xl cursor-pointer group-hover:-translate-y-1.5"
+                    onClick={() => setPreviewCard(card)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setPreviewCard(card);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View details for ${card.title}`}
+                    className="relative w-full max-w-[360px] p-2.5 sm:p-3 rounded-t-[170px] sm:rounded-t-[200px] rounded-b-3xl border border-[#d4be9f]/35 hover:border-[#f5d15c]/80 bg-[#061827]/60 backdrop-blur-md transition-all duration-500 hover:shadow-[0_15px_45px_rgba(245,209,92,0.18)] shadow-xl cursor-pointer group-hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
                   >
                     {/* Inner Arch Photo Container */}
                     <div className="relative w-full aspect-[3/3.8] rounded-t-[155px] sm:rounded-t-[185px] rounded-b-2xl overflow-hidden shadow-inner bg-[#03101c]">
@@ -537,11 +560,11 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        onOpenBookingFor(`Inquiry for ${card.title} (${card.province})`);
+                        setPreviewCard(card);
                       }}
                       className="px-8 py-2.5 rounded-full text-xs font-serif italic tracking-wider text-amber-100 bg-[#c89b6d]/20 hover:bg-[#c89b6d]/40 border border-[#c89b6d]/60 hover:border-[#f5d15c] transition-all shadow-[0_2px_12px_rgba(200,155,109,0.2)] cursor-pointer hover:scale-105 active:scale-95"
                     >
-                      View Details
+                      Explore Details
                     </button>
                   </div>
                 </div>
@@ -571,7 +594,9 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                 key={dest.id}
                 type="button"
                 onClick={() => {
-                  onOpenBookingFor(`Inquiry for ${dest.name} (${dest.province})`);
+                  const matchingCard = ARCH_DESTINATIONS_DATA.find((card) => card.id === dest.id);
+                  if (matchingCard) setPreviewCard(matchingCard);
+                  else onOpenBookingFor(`Inquiry for ${dest.name} (${dest.province})`);
                 }}
                 className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#061928]/80 hover:bg-[#092942] border border-cyan-500/20 hover:border-cyan-400/50 transition-all flex-shrink-0 cursor-pointer group text-left"
               >
@@ -581,7 +606,7 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                     alt={dest.name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=300&q=80';
+                      e.currentTarget.src = '/img/mirissa.webp';
                     }}
                   />
                 </div>
@@ -598,6 +623,90 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
           </div>
         </div>
       </div>
+
+      {previewCard && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+          onClick={(event) => {
+            if (event.target === event.currentTarget) setPreviewCard(null);
+          }}
+        >
+          <article
+            data-lenis-prevent
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="destination-preview-title"
+            className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-[#061827] border border-cyan-400/30 shadow-2xl"
+          >
+            <button
+              type="button"
+              onClick={() => setPreviewCard(null)}
+              aria-label="Close destination details"
+              className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/65 border border-white/30 text-white flex items-center justify-center hover:bg-black/85 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="grid md:grid-cols-[1.05fr_0.95fr]">
+              <div className="relative min-h-[280px] md:min-h-[520px] bg-[#03101c]">
+                <img
+                  src={previewCard.heroImage}
+                  alt={`${previewCard.title}, ${previewCard.province}`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#03101c]/75 via-transparent to-transparent" />
+                <div className="absolute left-5 bottom-5 right-5">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-amber-200 font-bold">{previewCard.categoryLabel}</span>
+                  <h2 id="destination-preview-title" className="mt-1 text-2xl sm:text-3xl font-serif italic text-white">{previewCard.title}</h2>
+                  <p className="mt-1 text-xs text-slate-200">{previewCard.province}, Sri Lanka</p>
+                </div>
+              </div>
+
+              <div className="p-5 sm:p-7 lg:p-8">
+                <div className="flex items-start justify-between gap-4 pr-10">
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-cyan-300">Destination preview</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-300">{previewCard.description}</p>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-center gap-2 text-xs text-amber-200">
+                  <Calendar className="w-4 h-4" />
+                  <span>Best season: {previewCard.bestSeason}</span>
+                </div>
+                <div className="mt-2 flex items-center gap-2 text-xs text-slate-300">
+                  <Clock className="w-4 h-4 text-cyan-300" />
+                  <span>{previewCard.duration} · Private tour</span>
+                </div>
+
+                <div className="mt-6">
+                  <h3 className="text-xs uppercase tracking-widest text-cyan-300 font-bold">Highlights</h3>
+                  <ul className="mt-3 space-y-2.5">
+                    {previewCard.highlights.map((highlight) => (
+                      <li key={highlight} className="flex gap-2.5 text-sm leading-relaxed text-slate-200">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 text-cyan-400 shrink-0" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    const card = previewCard;
+                    setPreviewCard(null);
+                    onOpenBookingFor(`Inquiry for ${card.title} (${card.province})`);
+                  }}
+                  className="mt-7 w-full px-5 py-3 rounded-full bg-amber-300 hover:bg-amber-200 text-slate-950 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
+                >
+                  Plan this journey <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      )}
 
       {/* =========================================================================
           SEAMLESS CURVY WAVE BOUNDARY LEADING DIRECTLY INTO THE FOOTER

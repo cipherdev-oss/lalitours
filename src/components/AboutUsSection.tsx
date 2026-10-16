@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
   Send,
@@ -13,6 +13,9 @@ import {
   Smile,
   MapPin,
   CheckCircle2,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { Destination } from '../types';
 
@@ -54,6 +57,32 @@ interface AboutTabContent {
   calloutAction: string;
 }
 
+interface OwnerPhoto {
+  src: string;
+  caption: string;
+}
+
+const ownerPhoto = (filename: string) => `/img/owner/${encodeURIComponent(filename)}`;
+
+const OWNER_PHOTOS: OwnerPhoto[] = [
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.57 (2).jpeg'), caption: 'Lali Ceylon Tours owner with guests on safari' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.55 (2).jpeg'), caption: 'The owner with guests at Sigiriya' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.56 (2).jpeg'), caption: 'The owner sharing a boat trip with guests' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.36.22.jpeg'), caption: 'The owner with guests at a Sri Lankan waterfall' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.54 (1).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.54.jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.55 (1).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.55 (3).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.55.jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.56 (1).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.56 (3).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.56 (4).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.56.jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.57 (1).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.35.57.jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+  { src: ownerPhoto('WhatsApp Image 2026-10-05 at 21.36.22 (1).jpeg'), caption: 'Lali Ceylon Tours owner with guests in Sri Lanka' },
+];
+
 const ABOUT_TABS: Record<string, AboutTabContent> = {
   story: {
     id: 'story',
@@ -64,20 +93,20 @@ const ABOUT_TABS: Record<string, AboutTabContent> = {
     description:
       'Founded by passionate native islanders and seasoned travel architects, we set out with a singular vision: to share the untamed beauty, vibrant culture, and timeless soul of Sri Lanka with discerning travelers worldwide. From mist-shrouded highland peaks and ancient monolithic fortresses to untouched southern bays, we craft deeply personal, authentic journeys that linger in your heart forever.',
     mainImage: {
-      url: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=85',
-      caption: 'Nuwara Eliya Tea Valleys & Highland Workers',
+      url: OWNER_PHOTOS[0].src,
+      caption: OWNER_PHOTOS[0].caption,
     },
     topRightImage: {
-      url: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=85',
-      caption: 'Sigiriya Sky Monolith at Dawn',
+      url: OWNER_PHOTOS[1].src,
+      caption: OWNER_PHOTOS[1].caption,
     },
     bottomLeftImage: {
-      url: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=85',
-      caption: 'Historic Galle Ramparts & Coastal Watch',
+      url: OWNER_PHOTOS[2].src,
+      caption: OWNER_PHOTOS[2].caption,
     },
     bottomRightImage: {
-      url: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=85',
-      caption: 'Mirissa Palm Groves & Azure Bays',
+      url: OWNER_PHOTOS[3].src,
+      caption: OWNER_PHOTOS[3].caption,
     },
     badges: [
       { icon: 'local', line1: '100% Local', line2: 'Born & Raised' },
@@ -194,7 +223,48 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
   onOpenBooking,
 }) => {
   const [activeTabKey, setActiveTabKey] = useState<string>('story');
+  const [ownerGalleryIndex, setOwnerGalleryIndex] = useState<number | null>(null);
   const currentData = ABOUT_TABS[activeTabKey] || ABOUT_TABS.story;
+  const isOwnerGalleryOpen = ownerGalleryIndex !== null;
+
+  useEffect(() => {
+    if (!isOwnerGalleryOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOwnerGalleryIndex(null);
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        setOwnerGalleryIndex((index) => index === null ? null : (index + 1) % OWNER_PHOTOS.length);
+      }
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        setOwnerGalleryIndex((index) => index === null ? null : (index - 1 + OWNER_PHOTOS.length) % OWNER_PHOTOS.length);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOwnerGalleryOpen]);
+
+  const openPhoto = (index: number, imageUrl: string) => {
+    if (activeTabKey === 'story') {
+      setOwnerGalleryIndex(index);
+      return;
+    }
+    onOpenLightbox?.(imageUrl, index);
+  };
+
+  const handlePhotoKeyDown = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+    index: number,
+    imageUrl: string
+  ) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    openPhoto(index, imageUrl);
+  };
 
   const renderBadgeIcon = (type: string) => {
     switch (type) {
@@ -249,7 +319,7 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
           {/* Two-Column Layout keeping the exact structure */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             {/* LEFT: Polaroid Photo Collage with playful travel doodles */}
-            <div className="lg:col-span-6 relative w-full flex items-center justify-center py-4 sm:py-6">
+            <div className="lg:col-span-6 relative w-full min-w-0 flex flex-col items-center justify-center py-4 sm:py-6">
               {/* Paper Airplane with Curved Dashed Flight Path */}
               <div className="absolute -left-2 sm:-left-4 top-0 sm:top-2 z-10 pointer-events-none select-none">
                 <svg
@@ -293,10 +363,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
                   whileHover={{ scale: 1.03, rotate: -1, zIndex: 40 }}
-                  onClick={() =>
-                    onOpenLightbox?.(currentData.mainImage.url, 0)
-                  }
-                  className="absolute left-[6%] sm:left-[8%] top-[3%] w-[72%] sm:w-[70%] aspect-[4/3.1] bg-white p-2 sm:p-3 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] border-[6px] sm:border-[10px] border-white -rotate-2 z-20 cursor-pointer transition-shadow hover:shadow-cyan-500/30 group"
+                  onClick={() => openPhoto(0, currentData.mainImage.url)}
+                  onKeyDown={(event) => handlePhotoKeyDown(event, 0, currentData.mainImage.url)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo: ${currentData.mainImage.caption}`}
+                  className="absolute left-[6%] sm:left-[8%] top-[3%] w-[74%] sm:w-[72%] aspect-[4/3.1] bg-white p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] border-2 sm:border-[3px] border-white -rotate-2 z-20 cursor-pointer transition-shadow hover:shadow-cyan-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 group"
                 >
                   <div className="w-full h-full rounded-xl sm:rounded-2xl overflow-hidden relative">
                     <img
@@ -321,10 +393,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                   whileHover={{ scale: 1.05, rotate: 4, zIndex: 40 }}
-                  onClick={() =>
-                    onOpenLightbox?.(currentData.topRightImage.url, 1)
-                  }
-                  className="absolute right-[0%] sm:right-[1%] top-[8%] w-[50%] sm:w-[48%] aspect-[4/3.1] bg-white p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.45)] border-[5px] sm:border-[8px] border-white rotate-6 z-10 cursor-pointer transition-shadow hover:shadow-cyan-500/25 group"
+                  onClick={() => openPhoto(1, currentData.topRightImage.url)}
+                  onKeyDown={(event) => handlePhotoKeyDown(event, 1, currentData.topRightImage.url)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo: ${currentData.topRightImage.caption}`}
+                  className="absolute right-[0%] sm:right-[1%] top-[8%] w-[48%] sm:w-[46%] aspect-[4/3.1] bg-white p-1 sm:p-1.5 rounded-xl sm:rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.45)] border-2 sm:border-[3px] border-white rotate-6 z-10 cursor-pointer transition-shadow hover:shadow-cyan-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 group"
                 >
                   <div className="w-full h-full rounded-lg sm:rounded-xl overflow-hidden relative">
                     <img
@@ -349,10 +423,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
                   whileHover={{ scale: 1.05, rotate: -4, zIndex: 40 }}
-                  onClick={() =>
-                    onOpenLightbox?.(currentData.bottomLeftImage.url, 2)
-                  }
-                  className="absolute left-[0%] bottom-[3%] w-[50%] sm:w-[48%] aspect-[4/3.1] bg-white p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.45)] border-[5px] sm:border-[8px] border-white -rotate-6 z-30 cursor-pointer transition-shadow hover:shadow-cyan-500/25 group"
+                  onClick={() => openPhoto(2, currentData.bottomLeftImage.url)}
+                  onKeyDown={(event) => handlePhotoKeyDown(event, 2, currentData.bottomLeftImage.url)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo: ${currentData.bottomLeftImage.caption}`}
+                  className="absolute left-[0%] bottom-[3%] w-[48%] sm:w-[46%] aspect-[4/3.1] bg-white p-1 sm:p-1.5 rounded-xl sm:rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.45)] border-2 sm:border-[3px] border-white -rotate-6 z-30 cursor-pointer transition-shadow hover:shadow-cyan-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 group"
                 >
                   <div className="w-full h-full rounded-lg sm:rounded-xl overflow-hidden relative">
                     <img
@@ -377,10 +453,12 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   whileHover={{ scale: 1.05, rotate: 2, zIndex: 40 }}
-                  onClick={() =>
-                    onOpenLightbox?.(currentData.bottomRightImage.url, 3)
-                  }
-                  className="absolute right-[2%] sm:right-[4%] bottom-[0%] w-[54%] sm:w-[52%] aspect-[4/3.1] bg-white p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] border-[5px] sm:border-[8px] border-white rotate-4 z-20 cursor-pointer transition-shadow hover:shadow-cyan-500/25 group"
+                  onClick={() => openPhoto(3, currentData.bottomRightImage.url)}
+                  onKeyDown={(event) => handlePhotoKeyDown(event, 3, currentData.bottomRightImage.url)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View photo: ${currentData.bottomRightImage.caption}`}
+                  className="absolute right-[2%] sm:right-[4%] bottom-[0%] w-[52%] sm:w-[50%] aspect-[4/3.1] bg-white p-1 sm:p-1.5 rounded-xl sm:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] border-2 sm:border-[3px] border-white rotate-4 z-20 cursor-pointer transition-shadow hover:shadow-cyan-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 group"
                 >
                   <div className="w-full h-full rounded-lg sm:rounded-xl overflow-hidden relative">
                     <img
@@ -398,6 +476,28 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
                   </div>
                 </motion.div>
               </div>
+
+              {activeTabKey === 'story' && (
+                <div className="mt-3 w-full max-w-[620px]">
+                  <div className="flex items-center justify-between gap-3 mb-2 px-1">
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-cyan-200/80 font-semibold">Owner & guest moments</span>
+                    <span className="text-[10px] font-mono text-slate-400">{OWNER_PHOTOS.length} photos</span>
+                  </div>
+                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none" aria-label="Owner and guest photo thumbnails">
+                    {OWNER_PHOTOS.map((photo, index) => (
+                      <button
+                        key={photo.src}
+                        type="button"
+                        onClick={() => setOwnerGalleryIndex(index)}
+                        aria-label={`Open photo ${index + 1} of ${OWNER_PHOTOS.length}: ${photo.caption}`}
+                        className="w-[68px] h-[54px] sm:w-20 sm:h-16 shrink-0 overflow-hidden rounded-md border border-white/20 opacity-80 hover:opacity-100 hover:border-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 transition-all"
+                      >
+                        <img src={photo.src} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* RIGHT: Editorial Content matching the exact reference design */}
@@ -464,6 +564,59 @@ export const AboutUsSection: React.FC<AboutUsSectionProps> = ({
             </div>
           </div>
         </div>
+
+        {ownerGalleryIndex !== null && (
+          <div
+            className="fixed inset-0 z-[60] bg-[#02080e]/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
+            onClick={(event) => {
+              if (event.target === event.currentTarget) setOwnerGalleryIndex(null);
+            }}
+          >
+            <div role="dialog" aria-modal="false" aria-label="Owner and guest photo gallery" className="w-full max-w-6xl">
+              <div className="flex items-center justify-between gap-4 text-white mb-3 sm:mb-4">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-cyan-300 font-semibold">Lali Ceylon Tours</p>
+                  <p className="text-xs text-slate-400 mt-1">{ownerGalleryIndex + 1} / {OWNER_PHOTOS.length}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setOwnerGalleryIndex(null)}
+                  aria-label="Close photo gallery"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="relative h-[min(72vh,760px)] flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => setOwnerGalleryIndex((ownerGalleryIndex - 1 + OWNER_PHOTOS.length) % OWNER_PHOTOS.length)}
+                  aria-label="Previous photo"
+                  className="absolute left-1 sm:left-4 z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/75 border border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <img
+                  key={OWNER_PHOTOS[ownerGalleryIndex].src}
+                  src={OWNER_PHOTOS[ownerGalleryIndex].src}
+                  alt={OWNER_PHOTOS[ownerGalleryIndex].caption}
+                  className="max-h-full max-w-[calc(100%-5.5rem)] object-contain rounded-lg shadow-2xl"
+                />
+                <button
+                  type="button"
+                  onClick={() => setOwnerGalleryIndex((ownerGalleryIndex + 1) % OWNER_PHOTOS.length)}
+                  aria-label="Next photo"
+                  className="absolute right-1 sm:right-4 z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black/50 hover:bg-black/75 border border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              <p className="text-center text-sm text-slate-200 mt-3">{OWNER_PHOTOS[ownerGalleryIndex].caption}</p>
+            </div>
+          </div>
+        )}
     </section>
   );
 };

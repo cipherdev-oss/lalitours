@@ -50,7 +50,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 84.8,
     shortStory:
       'A world unto itself of golden Hindu gopurams, vibrant blue sea lagoons, crab curries infused with roasted spices, and resilient timeless warmth.',
-    photo: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/map/jaffna-nallur-temple.webp',
     experiences: [
       'Nallur Kandaswamy Temple rituals',
       'Ferry to remote Delft Island wild horses',
@@ -70,7 +70,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 348.8,
     shortStory:
       'The sacred 2,500-year-old kingdom where giant white brick stupas kiss the sky and the oldest documented tree on Earth still flourishes.',
-    photo: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/experiences/ancient-stupa.webp',
     experiences: [
       'Dawn meditation beneath Jaya Sri Maha Bodhi',
       'Cycling past Ruwanwelisaya stupa',
@@ -89,8 +89,8 @@ const LOCATIONS: MapLocation[] = [
     svgX: 405.5,
     svgY: 298.7,
     shortStory:
-      'One of the worlds finest natural deep-water harbors, dramatic ocean-cliff Hindu shrines, and powdery white shores bordering turquoise bays.',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+      'One of the world’s finest natural deep-water harbors, with dramatic ocean-cliff Hindu shrines and powdery white shores bordering turquoise bays.',
+    photo: '/img/map/trincomalee-koneswaram.webp',
     experiences: [
       'Koneswaram Temple cliff-top sunset',
       'Snorkeling Pigeon Island coral reefs',
@@ -110,7 +110,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 424.1,
     shortStory:
       'The legendary Lion Rock rising 200 meters above emerald jungle canopies, harboring 5th-century frescoes, water gardens, and royal genius.',
-    photo: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/sigiriya.webp',
     experiences: [
       'Sunrise ascent up the sheer monolith',
       'Panoramic view from Pidurangala rock',
@@ -130,7 +130,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 427.5,
     shortStory:
       'The medieval capital where colossal Buddha statues were carved directly from single granite rock faces, framed by whispering ancient trees.',
-    photo: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/map/polonnaruwa-gal-vihara.webp',
     experiences: [
       'Gal Vihara granite rock sculptures',
       'Cycling the ancient Royal Palace ruins',
@@ -169,8 +169,8 @@ const LOCATIONS: MapLocation[] = [
     svgX: 134.9,
     svgY: 629.1,
     shortStory:
-      'The dynamic oceanfront metropolis where colonial Portuguese ramparts, neon rooftop bars, and sunset kite flying on Galle Face Green merge.',
-    photo: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+      'A lively Indian Ocean capital where Galle Face Green’s open waterfront, the historic Fort district, and a modern skyline meet.',
+    photo: '/img/map/colombo-skyline.webp',
     experiences: [
       'Street food tasting on Galle Face Green at dusk',
       'Pettah sensory floating bazaar exploration',
@@ -190,7 +190,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 620.8,
     shortStory:
       'Misty green valleys, cascading silver waterfalls, Tudor-style cottages, and the world’s most pristine high-grown Ceylon tea estates.',
-    photo: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/n.webp',
     experiences: [
       'Single-estate tea factory plucking tour',
       'Dawn trek across Hortons Plains & Worlds End',
@@ -210,7 +210,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 641.3,
     shortStory:
       'A bohemian mountain gap town blessed with dramatic gorges, forest hiking trails, and the world-famous Nine Arch stone railway bridge.',
-    photo: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/9.webp',
     experiences: [
       'Watching the blue train cross Nine Arch Bridge',
       'Hiking Little Adams Peak at dawn',
@@ -230,7 +230,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 646.0,
     shortStory:
       'A laid-back surf paradise where untamed coastline meets wild lagoons, elephant corridors, and legendary Indian Ocean point breaks.',
-    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/experiences/arugam-bay-surf.webp',
     experiences: [
       'Surfing Main Point and Whiskey Point breaks',
       'Kumana National Park bird & leopard safari',
@@ -249,8 +249,8 @@ const LOCATIONS: MapLocation[] = [
     svgX: 462.1,
     svgY: 740.0,
     shortStory:
-      'Raw, sun-drenched savannah meeting wild ocean surf, hosting the greatest density of leopards in the world alongside majestic elephants.',
-    photo: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=800&q=80',
+      'Dry-zone scrub, rocky outcrops, and coastal lagoons make Yala one of Sri Lanka’s best-known habitats for leopards and elephants.',
+    photo: '/img/yala.jpg',
     experiences: [
       'Dawn 4x4 open safari for wild leopards',
       'Sloth bear and crocodile tracking',
@@ -270,7 +270,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 824.0,
     shortStory:
       'A golden crescent beach town famous for playful ocean waves, swaying palm headlands, and deep oceanic trenches where blue whales cruise.',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/mirissa.webp',
     experiences: [
       'Blue Whale boat expedition at sunrise',
       'Sunset drinks atop Coconut Tree Hill',
@@ -290,7 +290,7 @@ const LOCATIONS: MapLocation[] = [
     svgY: 807.1,
     shortStory:
       'A living 17th-century UNESCO World Heritage sea fortress where Dutch colonial villas house boutique hotels, spice shops, and gelato parlors.',
-    photo: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=800&q=80',
+    photo: '/img/galle.jpg',
     experiences: [
       'Walking the ocean ramparts at golden hour',
       'Shopping cinnamon, sapphires, and linen',

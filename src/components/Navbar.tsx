@@ -6,12 +6,12 @@ import {
   MapPin,
   Users,
   ChevronRight,
-  MessageCircle,
   X,
   Menu,
 } from 'lucide-react';
 import { smoothScrollTo, smoothScrollToTop } from '../utils/smoothScroll';
 import { LaliLogo } from './LaliLogo';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Destination } from '../types';
 
 interface NavbarProps {
@@ -254,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onClick={() => setMobileMenuOpen(false)}
                   className="min-h-[42px] w-full py-2.5 px-4 rounded-full border border-emerald-400/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <WhatsAppIcon className="w-4 h-4" />
                   <span>WhatsApp Concierge (+94 77 123 4567)</span>
                 </a>
               </div>

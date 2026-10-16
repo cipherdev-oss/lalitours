@@ -58,7 +58,7 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(10px)' }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#030b14] text-white select-none overflow-hidden"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#06171d] text-white select-none overflow-hidden"
           style={{ willChange: 'opacity, transform' }}
         >
           {/* Ambient luminous glow backdrops */}
@@ -83,8 +83,34 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
 
           {/* Central Logo Container with Modern Synchronized Animation */}
           <div className="relative z-10 flex flex-col items-center max-w-sm px-6 text-center">
+            <motion.div
+              className="relative flex items-center justify-center"
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <div className="absolute inset-x-[-22%] top-1/2 h-[280px] -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(240,253,250,0.96)_0%,rgba(240,253,250,0.78)_38%,rgba(240,253,250,0)_76%)]" />
+              <motion.div
+                className="absolute inset-[-18px] rounded-[46%] border border-white/15 border-t-cyan-100/70"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+              />
+              <motion.div
+                className="absolute inset-x-[-22%] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-cyan-100/60 to-transparent"
+                animate={{ scaleX: [0.35, 1, 0.35], opacity: [0, 0.7, 0] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.img
+                src="/img/lali-logo-transparent.png"
+                alt="Lali Ceylon Tours — More Than Just a Trip"
+                initial={{ opacity: 0, y: 18, scale: 0.92, filter: 'blur(12px)' }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 w-56 sm:w-64 max-w-full h-auto drop-shadow-[0_12px_28px_rgba(3,27,35,0.35)]"
+              />
+            </motion.div>
+
             {/* The Island Teardrop Shape with Sigiriya Rock, Hiker, and Sunset Landscape */}
-            <div className="relative w-40 h-40 sm:w-48 sm:h-48 mb-3">
+            <div className="relative hidden w-40 h-40 sm:w-48 sm:h-48 mb-3">
               <svg viewBox="0 0 600 620" className="w-full h-full drop-shadow-[0_0_35px_rgba(6,182,212,0.5)]">
                 <defs>
                   <clipPath id="loader-island-accurate-clip">
@@ -320,7 +346,7 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-serif italic text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-[0_4px_20px_rgba(34,211,238,0.4)]"
+              className="hidden font-serif italic text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-[0_4px_20px_rgba(34,211,238,0.4)]"
             >
               Lali
             </motion.div>
@@ -330,7 +356,7 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
               initial={{ opacity: 0, letterSpacing: '0.15em' }}
               animate={{ opacity: 1, letterSpacing: '0.3em' }}
               transition={{ duration: 0.8, delay: 0.45, ease: 'easeOut' }}
-              className="text-xs sm:text-sm font-extrabold uppercase font-montserrat text-cyan-300 mt-1"
+              className="hidden text-xs sm:text-sm font-extrabold uppercase font-montserrat text-cyan-300 mt-1"
             >
               CEYLON TOURS
             </motion.div>
@@ -340,7 +366,7 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: '100%' }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="flex items-center justify-center gap-3 mt-2 overflow-hidden"
+              className="hidden flex items-center justify-center gap-3 mt-2 overflow-hidden"
             >
               <div className="w-8 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-cyan-400" />
               <span className="font-serif italic text-xs text-cyan-200/90 whitespace-nowrap tracking-wider">
