@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
-  Sparkles,
   MapPin,
   Phone,
   Mail,
   Clock,
-  ShieldCheck,
-  Award,
-  Heart,
   ArrowUp,
-  ExternalLink,
   ChevronRight,
   Compass,
 } from 'lucide-react';
-import { smoothScrollToTop, smoothScrollTo } from '../utils/smoothScroll';
+import { smoothScrollToTop } from '../utils/smoothScroll';
 import { LaliLogo } from './LaliLogo';
 import { WhatsAppIcon } from './WhatsAppIcon';
 
@@ -22,28 +17,7 @@ interface FooterProps {
   onOpenBooking?: (notes?: string) => void;
 }
 
-const WORDS = [
-  { text: 'BEACHES', color: 'from-cyan-400 to-blue-500', desc: '1,340 km of sun-drenched Indian Ocean coastline.' },
-  { text: 'MOUNTAINS', color: 'from-sky-400 to-cyan-500', desc: 'Misty tea terraces rising above 2,500 meters.' },
-  { text: 'WILDLIFE', color: 'from-amber-400 to-orange-500', desc: 'Leopards, blue whales, and roaming elephant herds.' },
-  { text: 'HISTORY', color: 'from-yellow-400 to-amber-500', desc: '2,500 years of documented royal kingdoms.' },
-  { text: 'FOOD', color: 'from-orange-400 to-rose-500', desc: 'Explosive clay-pot curries and fresh coastal crab.' },
-  { text: 'CULTURE', color: 'from-rose-400 to-pink-500', desc: 'Hypnotic fire dancers and sacred temple bells.' },
-  { text: 'ADVENTURE', color: 'from-teal-400 to-cyan-500', desc: 'World-class surf point breaks and cloud forest hikes.' },
-];
-
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => {
-  const [activeWordIndex, setActiveWordIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveWordIndex((prev) => (prev + 1) % WORDS.length);
-    }, 2400);
-    return () => clearInterval(timer);
-  }, []);
-
-  const activeWord = WORDS[activeWordIndex];
-
   const handleNavClick = (view: 'home' | 'tours' | 'destinations' | 'about' | 'book', sectionId?: string) => {
     if (onNavigate) {
       onNavigate(view, sectionId);
@@ -56,8 +30,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
         window.location.hash = 'about';
       } else if (view === 'book') {
         window.location.hash = 'book';
-      } else if (sectionId) {
-        smoothScrollTo('#' + sectionId, { offset: -80, duration: 1.25 });
       }
     }
   };
@@ -68,63 +40,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
 
   return (
     <footer className="relative w-full bg-[#02070d] text-white overflow-hidden touch-pan-y">
-      {/* =========================================================================
-          PART 1: THE SERENDIPITY PARADOX (Interactive Rotating Experience)
-          ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 relative overflow-hidden flex flex-col items-center justify-center border-b border-white/10 section-lazy touch-pan-y">
-        {/* Deep starry/ambient backdrop */}
-        <div className="absolute inset-0 pointer-events-none opacity-40">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: 'radial-gradient(#1e3a5f 1px, transparent 1px)',
-              backgroundSize: '32px 32px',
-            }}
-          />
-        </div>
-
-        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[180px] pointer-events-none gpu-layer" />
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Subtle Top Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a1826] border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold tracking-widest uppercase mb-6 sm:mb-8 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            The Serendipity Paradox
-          </div>
-
-          {/* Main Headline */}
-          <h2 className="text-3xl sm:text-5xl lg:text-7xl font-archivo font-black tracking-tight text-slate-100 uppercase leading-none">
-            ONE ISLAND.
-          </h2>
-          <h3 className="text-3xl sm:text-5xl lg:text-7xl font-archivo font-black tracking-tight text-white uppercase mt-2 sm:mt-4 leading-none">
-            ENDLESS EXPERIENCES.
-          </h3>
-
-          {/* Dynamic Animated Word Spotlight */}
-          <div className="my-8 sm:my-12 h-24 sm:h-28 flex flex-col items-center justify-center">
-            <div
-              key={activeWord.text}
-              className={`text-4xl sm:text-6xl lg:text-7xl font-archivo font-black tracking-wider uppercase bg-gradient-to-r ${activeWord.color} bg-clip-text text-transparent animate-fadeIn transition-all duration-500`}
-            >
-              {activeWord.text}.
-            </div>
-            <p className="text-xs sm:text-base text-slate-300 font-light mt-2 max-w-md mx-auto">
-              {activeWord.desc}
-            </p>
-          </div>
-
-          {/* Quick CTA to start planning */}
-          <div className="mt-6 flex items-center justify-center gap-3">
-            <button
-              onClick={() => onOpenBooking ? onOpenBooking('Serendipity Paradox Inquiry') : undefined}
-              className="px-7 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(34,211,238,0.4)] cursor-pointer hover:scale-105"
-            >
-              Plan Your Expedition
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* =========================================================================
           PART 2: COMPREHENSIVE FOOTER (About, Quick Links, Contacts & Details)
           ========================================================================= */}
@@ -147,15 +62,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
             {/* Trust Badges */}
             <div className="pt-2 flex flex-col gap-2.5 text-xs text-slate-300">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <Compass className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                 <span>SLTDA Government-Licensed Chauffeur Guides</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <Compass className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                 <span>12+ Years of Verified Five-Star Hospitality</span>
               </div>
               <div className="flex items-center gap-2">
-                <Heart className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <Compass className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                 <span>100% Tailor-Made & Sustainable Private Expeditions</span>
               </div>
               <div className="flex items-center gap-2">

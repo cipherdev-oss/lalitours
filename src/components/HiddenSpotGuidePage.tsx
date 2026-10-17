@@ -132,7 +132,7 @@ export const HiddenSpotGuidePage: React.FC<HiddenSpotGuidePageProps> = ({ slug }
                 Plan this journey <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href={`https://wa.me/94771234567?text=${whatsAppMessage}`}
+                href={`https://wa.me/971582177381?text=${whatsAppMessage}`}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-3 w-full px-5 py-3 rounded-full border border-emerald-400/50 text-emerald-200 hover:bg-emerald-950/40 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
