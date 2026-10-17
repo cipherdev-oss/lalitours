@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { smoothScrollTo, smoothScrollToTop } from '../utils/smoothScroll';
 import { LaliLogo } from './LaliLogo';
+import { AccentSwitcher } from './AccentSwitcher';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { Destination } from '../types';
 
@@ -84,68 +85,71 @@ export const Navbar: React.FC<NavbarProps> = ({
         <nav className="relative z-10 hidden md:flex items-center gap-6 lg:gap-10 text-xs font-semibold tracking-[0.16em] uppercase ml-auto nav-links">
           <button
             onClick={() => handleNavClick('home', 'hero-viewer')}
-            className={`nav-link transition-all py-1 cursor-pointer relative ${
+            className={`nav-link nav-link-accent transition-all py-1 cursor-pointer relative ${
               currentView === 'home'
-                ? 'active text-[#00ddff] font-bold drop-shadow-[0_0_8px_rgba(0,221,255,0.6)]'
-                : 'text-white/75 hover:text-[#00ddff]'
+                ? 'active font-bold'
+                : 'text-white/75'
             }`}
           >
             <span>Home</span>
             {currentView === 'home' && (
-              <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00ddff] rounded-full shadow-[0_0_8px_#00ddff]" />
+              <span className="nav-underline absolute -bottom-1 left-0 right-0 h-[2px] rounded-full" />
             )}
           </button>
           <button
             onClick={() => handleNavClick('tours')}
-            className={`nav-link transition-all py-1 cursor-pointer relative ${
+            className={`nav-link nav-link-accent transition-all py-1 cursor-pointer relative ${
               currentView === 'tours'
-                ? 'active text-[#00ddff] font-bold drop-shadow-[0_0_8px_rgba(0,221,255,0.6)]'
-                : 'text-white/75 hover:text-[#00ddff]'
+                ? 'active font-bold'
+                : 'text-white/75'
             }`}
           >
             <span>Tours</span>
             {currentView === 'tours' && (
-              <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00ddff] rounded-full shadow-[0_0_8px_#00ddff]" />
+              <span className="nav-underline absolute -bottom-1 left-0 right-0 h-[2px] rounded-full" />
             )}
           </button>
           <button
             onClick={() => handleNavClick('destinations')}
-            className={`nav-link transition-all py-1 cursor-pointer relative ${
+            className={`nav-link nav-link-accent transition-all py-1 cursor-pointer relative ${
               currentView === 'destinations'
-                ? 'active text-[#00ddff] font-bold drop-shadow-[0_0_8px_rgba(0,221,255,0.6)]'
-                : 'text-white/75 hover:text-[#00ddff]'
+                ? 'active font-bold'
+                : 'text-white/75'
             }`}
           >
             <span>Destinations</span>
             {currentView === 'destinations' && (
-              <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00ddff] rounded-full shadow-[0_0_8px_#00ddff]" />
+              <span className="nav-underline absolute -bottom-1 left-0 right-0 h-[2px] rounded-full" />
             )}
           </button>
           <button
             onClick={() => handleNavClick('about')}
-            className={`nav-link transition-all py-1 cursor-pointer relative ${
+            className={`nav-link nav-link-accent transition-all py-1 cursor-pointer relative ${
               currentView === 'about'
-                ? 'active text-[#00ddff] font-bold drop-shadow-[0_0_8px_rgba(0,221,255,0.6)]'
-                : 'text-white/75 hover:text-[#00ddff]'
+                ? 'active font-bold'
+                : 'text-white/75'
             }`}
           >
             <span>About Us</span>
             {currentView === 'about' && (
-              <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00ddff] rounded-full shadow-[0_0_8px_#00ddff]" />
+              <span className="nav-underline absolute -bottom-1 left-0 right-0 h-[2px] rounded-full" />
             )}
           </button>
         </nav>
 
-        {/* Right Action Zone: Desktop "Book Your Tour" CTA + Mobile Controls */}
+        {/* Right Action Zone: Accent dots + Desktop "Book Your Tour" CTA + Mobile Controls */}
         <div className="relative z-10 flex items-center gap-2 sm:gap-3 ml-2 sm:ml-6 md:ml-8 lg:ml-10 flex-shrink-0">
+          {/* Desktop Accent Theme Switcher */}
+          <AccentSwitcher id="accent-desktop" layout="pill" />
+
           {/* Desktop & Tablet Full CTA */}
           <button
             onClick={() => handleNavClick('book')}
             className={`hidden sm:flex book-tour-btn px-5 sm:px-6 py-2.5 rounded-full font-bold text-[11px] sm:text-xs tracking-[1.5px] uppercase transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer items-center gap-2 whitespace-nowrap ${
               currentView === 'book'
-                ? 'bg-cyan-400 text-slate-950 ring-2 ring-white shadow-[0_0_28px_rgba(0,217,255,0.9)]'
-                : 'bg-gradient-to-r from-[#00d9ff] to-[#00b4d8] hover:from-[#38bdf8] hover:to-[#00d9ff] text-slate-950 shadow-[0_0_24px_rgba(0,217,255,0.6)] hover:shadow-[0_0_32px_rgba(0,217,255,0.85)]'
-            }`}
+                ? 'bg-cyan-400 text-slate-950 ring-2 ring-white'
+                : 'bg-gradient-to-r from-cyan-400 to-sky-500 hover:from-cyan-300 hover:to-sky-400 text-slate-950'
+            } book-tour-btn-accent`}
           >
             <span className="text-sm font-bold leading-none">✣</span>
             <span>BOOK YOUR TOUR</span>
@@ -235,6 +239,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Divider */}
               <div className="h-px bg-white/10 my-0.5" />
 
+              {/* Mobile Accent Theme Row */}
+              <AccentSwitcher id="accent-mobile" layout="row" />
+
+              {/* Divider */}
+              <div className="h-px bg-white/10 my-0.5" />
+
               {/* Action Buttons in Drawer */}
               <div className="space-y-2">
                 {/* Book Your Tour Primary CTA */}
@@ -248,14 +258,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 {/* WhatsApp Direct Concierge Link */}
                 <a
-                  href="https://wa.me/94771234567?text=Hello%20Lali%20Ceylon%20Tours!%20I'd%20like%20to%20inquire%20about%20a%20tour."
+                  href="https://wa.me/971582177381?text=Hello%20Lali%20Ceylon%20Tours!%20I'd%20like%20to%20inquire%20about%20a%20tour."
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
                   className="min-h-[42px] w-full py-2.5 px-4 rounded-full border border-emerald-400/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-2 active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
-                  <span>WhatsApp Concierge (+94 77 123 4567)</span>
+                  <span>WhatsApp Concierge (+971 58 217 7381)</span>
                 </a>
               </div>
             </motion.div>

@@ -87,7 +87,7 @@ export const TourDetailModal: React.FC<TourDetailModalProps> = ({
       'Scenic viewpoints, UNESCO landmarks, and local experiences',
     ];
 
-  const whatsappUrl = `https://wa.me/94771234567?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/971582177381?text=${encodeURIComponent(
     `Hello Lali Ceylon Tours! I am interested in the ${tour.title} (${tour.duration}). Could you share available dates and pricing?`
   )}`;
 

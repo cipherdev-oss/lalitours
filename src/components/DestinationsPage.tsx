@@ -19,6 +19,8 @@ import { Destination } from '../types';
 import { WaveDivider } from './WaveDivider';
 import { pauseSmoothScroll, resumeSmoothScroll } from '../utils/smoothScroll';
 
+import { DESTINATION_GUIDES } from '../data/destinationGuides';
+
 interface DestinationsPageProps {
   destinations: Destination[];
   activeDestination: Destination;
@@ -468,11 +470,11 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                       Delicate outer contour line with inner arched photograph
                       ------------------------------------------------------------- */}
                   <div
-                    onClick={() => setPreviewCard(card)}
+                    onClick={() => window.location.assign('/destinations/' + card.id + '/')}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault();
-                        setPreviewCard(card);
+                        window.location.assign('/destinations/' + card.id + '/');
                       }
                     }}
                     role="button"
@@ -560,7 +562,7 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        setPreviewCard(card);
+                        window.location.assign('/destinations/' + card.id + '/');
                       }}
                       className="px-8 py-2.5 rounded-full text-xs font-serif italic tracking-wider text-amber-100 bg-[#c89b6d]/20 hover:bg-[#c89b6d]/40 border border-[#c89b6d]/60 hover:border-[#f5d15c] transition-all shadow-[0_2px_12px_rgba(200,155,109,0.2)] cursor-pointer hover:scale-105 active:scale-95"
                     >
@@ -642,9 +644,10 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
               type="button"
               onClick={() => setPreviewCard(null)}
               aria-label="Close destination details"
-              className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/65 border border-white/30 text-white flex items-center justify-center hover:bg-black/85 transition-colors"
+              className="absolute top-3 right-3 z-20 min-w-[92px] h-11 px-3.5 rounded-full bg-slate-950/90 border-2 border-cyan-400/70 text-cyan-100 hover:text-white hover:bg-cyan-500/30 hover:border-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.5)] flex items-center justify-center gap-2 transition-all hover:scale-110 active:scale-95 cursor-pointer"
             >
               <X className="w-5 h-5" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em]">Close</span>
             </button>
 
             <div className="grid md:grid-cols-[1.05fr_0.95fr]">
@@ -702,6 +705,14 @@ export const DestinationsPage: React.FC<DestinationsPageProps> = ({
                 >
                   Plan this journey <ArrowRight className="w-4 h-4" />
                 </button>
+                {DESTINATION_GUIDES.some((g) => g.slug === previewCard.id) && (
+                  <a
+                    href={`/destinations/${previewCard.id}/`}
+                    className="mt-3 w-full px-5 py-3 rounded-full border border-cyan-400/50 text-cyan-100 hover:bg-cyan-950/50 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
+                  >
+                    Read full field guide <ArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
           </article>

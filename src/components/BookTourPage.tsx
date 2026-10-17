@@ -178,7 +178,7 @@ My Name: ${fullName}
 Email: ${email}
 Phone: ${countryCode} ${phone}
 Additional notes: ${initialNotes?.trim() || 'None'}`;
-  const whatsAppUrl = `https://wa.me/94771234567?text=${encodeURIComponent(whatsAppMessage)}`;
+  const whatsAppUrl = `https://wa.me/971582177381?text=${encodeURIComponent(whatsAppMessage)}`;
 
   // Validation
   const validateForm = () => {
