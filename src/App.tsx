@@ -220,7 +220,7 @@ export default function App() {
       <ModernPageLoader
         isLoading={isInitialLoading}
         onFinish={() => setIsInitialLoading(false)}
-        minDuration={1400}
+        minDuration={650}
       />
 
       {/* Subtle ambient soft illumination - hardware accelerated on desktop, optimized on mobile */}

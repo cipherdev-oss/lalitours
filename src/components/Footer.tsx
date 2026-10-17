@@ -142,7 +142,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
 
             <div className="space-y-3 text-xs text-slate-300">
               <a
-                href="https://wa.me/94771234567"
+                href="https://wa.me/971582177381"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/80 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors group cursor-pointer"
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                   <div className="text-[10px] uppercase font-mono text-emerald-400 font-bold">
                     WhatsApp & Hotline
                   </div>
-                  <div className="text-white font-bold text-xs mt-0.5">+94 77 123 4567</div>
+                  <div className="text-white font-bold text-xs mt-0.5">+971 58 217 7381</div>
                   <div className="text-[10px] text-slate-400">Instant Chat Available (24/7)</div>
                 </div>
               </a>

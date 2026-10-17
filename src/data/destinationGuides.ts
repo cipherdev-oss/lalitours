@@ -56,7 +56,7 @@ export const DESTINATION_GUIDES: DestinationGuide[] = [
       { src: '/img/sigiri.jpg', caption: 'Granite slopes and the final stair', className: '' },
       { src: '/img/experiences/ancient-stupa.webp', caption: 'Cultural Triangle stupas nearby', className: '' },
       { src: '/img/map/polonnaruwa-gal-vihara.webp', caption: 'Gal Vihara, ancient Polonnaruwa', className: 'md:col-span-2' },
-      { src: '/img/sigiriya.png', caption: 'The plain at golden hour', className: 'md:col-span-2' },
+      { src: '/img/sigiriya.webp', caption: 'The plain at golden hour', className: 'md:col-span-2' },
     ],
     wide: { src: '/img/sigiri.jpg', caption: 'Sunlight on the western face' },
     facts: [
@@ -98,7 +98,7 @@ export const DESTINATION_GUIDES: DestinationGuide[] = [
       { src: '/img/kandy.jpg', caption: 'The railway climbs out of Kandy', className: 'md:col-span-2' },
       { src: '/img/kandy.webp', caption: 'Hill country rail country', className: 'md:col-span-2' },
     ],
-    wide: { src: '/img/9.png', caption: 'The full sweep of the viaduct' },
+    wide: { src: '/img/9.webp', caption: 'The full sweep of the viaduct' },
     facts: [
       { label: 'Best window', value: 'January – March · clear hill skies' },
       { label: 'Altitude', value: '≈1,040 m · cool evenings year-round' },
@@ -136,7 +136,7 @@ export const DESTINATION_GUIDES: DestinationGuide[] = [
       { src: '/img/mirissa.jpg', caption: 'Palms over the south coast', className: '' },
       { src: '/img/experiences/arugam-bay-surf.webp', caption: 'Indian Ocean swell country', className: '' },
       { src: '/img/galle.jpg', caption: 'The south coast road west', className: 'md:col-span-2' },
-      { src: '/img/mirissa.png', caption: 'Coconut light, late afternoon', className: 'md:col-span-2' },
+      { src: '/img/mirissa.webp', caption: 'Coconut light, late afternoon', className: 'md:col-span-2' },
     ],
     wide: { src: '/img/mirissa.jpg', caption: 'Deep blue off the headland' },
     facts: [
