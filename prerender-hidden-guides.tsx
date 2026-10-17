@@ -9,7 +9,7 @@ import { HiddenSpotGuidePage } from './src/components/HiddenSpotGuidePage';
 const rootDirectory = process.cwd();
 const distDirectory = path.join(rootDirectory, 'dist');
 const indexTemplate = await readFile(path.join(distDirectory, 'index.html'), 'utf8');
-const configuredAppUrl = process.env.APP_URL?.trim();
+const configuredAppUrl = (process.env.APP_URL || process.env.URL || process.env.DEPLOY_PRIME_URL)?.trim();
 const siteUrl = configuredAppUrl && /^https?:\/\//i.test(configuredAppUrl)
   ? configuredAppUrl.replace(/\/+$/, '')
   : undefined;
