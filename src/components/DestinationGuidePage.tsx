@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, MapPin, Calendar, Clock, Star, Camera } from 'lucide-react';
 import { LaliLogo } from './LaliLogo';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { FloatingScrollToTop } from './FloatingScrollToTop';
+import { FloatingWhatsApp } from './FloatingWhatsApp';
 import { DESTINATION_GUIDES } from '../data/destinationGuides';
+import { initSmoothScroll, smoothScrollToTop } from '../utils/smoothScroll';
 
 interface DestinationGuidePageProps {
   slug: string;
@@ -10,6 +13,11 @@ interface DestinationGuidePageProps {
 
 export const DestinationGuidePage: React.FC<DestinationGuidePageProps> = ({ slug }) => {
   const guide = DESTINATION_GUIDES.find((item) => item.slug === slug);
+
+  useEffect(() => {
+    initSmoothScroll();
+    smoothScrollToTop(0.1);
+  }, [slug]);
 
   useEffect(() => {
     if (!guide) return;
@@ -187,6 +195,8 @@ export const DestinationGuidePage: React.FC<DestinationGuidePageProps> = ({ slug
           </div>
         </div>
       </footer>
+      <FloatingScrollToTop />
+      <FloatingWhatsApp />
     </div>
   );
 };

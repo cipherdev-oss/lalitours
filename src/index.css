@@ -361,12 +361,17 @@ html.lenis body {
 
 /* Smooth, responsive scrolling and layout stability */
 html {
+  scroll-behavior: smooth;
   /* Lenis orchestrates buttery smooth scroll; scroll-padding prevents sticky header clipping */
   scroll-padding-top: 84px;
   scroll-padding-bottom: 84px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   overscroll-behavior-y: auto;
+}
+
+html.has-lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 body {

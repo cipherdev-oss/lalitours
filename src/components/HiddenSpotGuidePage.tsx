@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, MapPin } from 'lucide-react';
 import { LaliLogo } from './LaliLogo';
 import { FloatingWhatsApp } from './FloatingWhatsApp';
+import { FloatingScrollToTop } from './FloatingScrollToTop';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { HIDDEN_SPOT_CARDS } from '../data/hiddenSpotCards';
 import { HIDDEN_SPOT_GUIDES } from '../data/hiddenSpotGuides';
+import { initSmoothScroll, smoothScrollToTop } from '../utils/smoothScroll';
 
 interface HiddenSpotGuidePageProps {
   slug: string;
@@ -13,6 +15,11 @@ interface HiddenSpotGuidePageProps {
 export const HiddenSpotGuidePage: React.FC<HiddenSpotGuidePageProps> = ({ slug }) => {
   const spot = HIDDEN_SPOT_CARDS.find((item) => item.slug === slug);
   const guide = HIDDEN_SPOT_GUIDES.find((item) => item.slug === slug);
+
+  useEffect(() => {
+    initSmoothScroll();
+    smoothScrollToTop(0.1);
+  }, [slug]);
 
   useEffect(() => {
     if (!spot || !guide) return;
@@ -151,6 +158,7 @@ export const HiddenSpotGuidePage: React.FC<HiddenSpotGuidePageProps> = ({ slug }
       <footer className="border-t border-cyan-950/70 py-6 text-center text-xs text-slate-500">
         © {new Date().getFullYear()} Lali Ceylon Tours · Sri Lanka
       </footer>
+      <FloatingScrollToTop />
       <FloatingWhatsApp />
     </div>
   );

@@ -59,9 +59,7 @@ for (const spot of HIDDEN_SPOT_CARDS) {
     .replace(/<meta property="og:title"[^>]*\/>/, `<meta property="og:title" content="${escapeHtml(guide.title)}" />`)
     .replace(/<meta property="og:description"[^>]*\/>/, `<meta property="og:description" content="${escapeHtml(guide.metaDescription)}" />`)
     .replace('</head>', `    ${seoTags}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${pageMarkup}</div>`)
-    .replace(/<link rel="modulepreload"[^>]*\/?\s*>/g, '')
-    .replace(/<script type="module"[^>]*><\/script>/g, '');
+    .replace('<div id="root"></div>', `<div id="root">${pageMarkup}</div>`);
 
   const routeDirectory = path.join(distDirectory, route);
   await mkdir(routeDirectory, { recursive: true });
@@ -102,9 +100,7 @@ for (const guide of DESTINATION_GUIDES) {
     .replace(/<meta property="og:title"[^>]*\/>/, `<meta property="og:title" content="${escapeHtml(guide.title)}" />`)
     .replace(/<meta property="og:description"[^>]*\/>/, `<meta property="og:description" content="${escapeHtml(guide.metaDescription)}" />`)
     .replace('</head>', `    ${seoTags}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${pageMarkup}</div>`)
-    .replace(/<link rel="modulepreload"[^>]*\/?\s*>/g, '')
-    .replace(/<script type="module"[^>]*><\/script>/g, '');
+    .replace('<div id="root"></div>', `<div id="root">${pageMarkup}</div>`);
 
   const routeDirectory = path.join(distDirectory, route);
   await mkdir(routeDirectory, { recursive: true });
