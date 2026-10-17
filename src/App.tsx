@@ -9,6 +9,7 @@ import { BeyondThePostcard } from './components/BeyondThePostcard';
 import { Footer } from './components/Footer';
 import { FloatingScrollToTop } from './components/FloatingScrollToTop';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { SocialDock } from './components/SocialDock';
 import {
   initSmoothScroll,
   destroySmoothScroll,
@@ -25,6 +26,7 @@ const AboutUsPage = lazy(() => import('./components/AboutUsPage').then(m => ({ d
 const BookTourPage = lazy(() => import('./components/BookTourPage').then(m => ({ default: m.BookTourPage })));
 const IslandInteractiveMap = lazy(() => import('./components/IslandInteractiveMap').then(m => ({ default: m.IslandInteractiveMap })));
 const HiddenSpotGuidePage = lazy(() => import('./components/HiddenSpotGuidePage').then(m => ({ default: m.HiddenSpotGuidePage })));
+const DestinationGuidePage = lazy(() => import('./components/DestinationGuidePage').then(m => ({ default: m.DestinationGuidePage })));
 
 // Code-split on-demand modals
 const PracticalTravelConcierge = lazy(() => import('./components/PracticalTravelConcierge').then(m => ({ default: m.PracticalTravelConcierge })));
@@ -42,6 +44,9 @@ export default function App() {
   const destinations = DESTINATIONS;
   const hiddenSpotSlug = typeof window !== 'undefined'
     ? window.location.pathname.match(/^\/hidden-serendipity\/([^/]+)\/?$/)?.[1]
+    : undefined;
+  const destinationSlug = typeof window !== 'undefined'
+    ? window.location.pathname.match(/^\/destinations\/([^/]+)\/?$/)?.[1]
     : undefined;
   const [activeDestination, setActiveDestination] = useState<Destination>(DESTINATIONS[0]);
   const [isInitialLoading, setIsInitialLoading] = useState<boolean>(true);
@@ -193,6 +198,14 @@ export default function App() {
     handleNavigate('book');
   };
 
+  if (destinationSlug) {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <DestinationGuidePage slug={decodeURIComponent(destinationSlug)} />
+      </Suspense>
+    );
+  }
+
   if (hiddenSpotSlug) {
     return (
       <Suspense fallback={<PageLoader />}>
@@ -324,6 +337,8 @@ export default function App() {
       {/* Floating Smooth Glide to Top Button with Circular Progress */}
       <FloatingScrollToTop />
       <FloatingWhatsApp />
+      {/* Desktop-only compact glass social dock (Instagram + TikTok) */}
+      <SocialDock />
     </div>
   );
 }

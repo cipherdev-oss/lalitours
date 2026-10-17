@@ -7,45 +7,21 @@ interface ModernPageLoaderProps {
   minDuration?: number;
 }
 
-const EXPEDITION_PHRASES = [
-  'Gathering Ceylon Sunsets...',
-  'Ascending Sigiriya Sky Citadel...',
-  'Unfolding Highland Mist Trails...',
-  'Crafting Bespoke Sri Lanka Expeditions...',
-];
-
 export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
   isLoading = true,
   onFinish,
   minDuration = 1600,
 }) => {
-  const [progress, setProgress] = useState(10);
-  const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    const startTime = Date.now();
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min(100, Math.round((elapsed / minDuration) * 100));
-      setProgress(pct);
-
-      if (pct >= 100) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setIsDone(true);
-          if (onFinish) onFinish();
-        }, 250);
-      }
-    }, 35);
-
-    const phraseInterval = setInterval(() => {
-      setPhraseIndex((prev) => (prev + 1) % EXPEDITION_PHRASES.length);
-    }, 550);
+    const timeout = window.setTimeout(() => {
+      setIsDone(true);
+      onFinish?.();
+    }, minDuration);
 
     return () => {
-      clearInterval(interval);
-      clearInterval(phraseInterval);
+      window.clearTimeout(timeout);
     };
   }, [minDuration, onFinish]);
 
@@ -376,20 +352,13 @@ export const ModernPageLoader: React.FC<ModernPageLoaderProps> = ({
             </motion.div>
 
             {/* Modern Slim Glowing Progress Indicator */}
-            <div className="w-48 sm:w-60 mt-8 flex flex-col items-center gap-2">
-              <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden p-[1px] border border-cyan-500/20">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-300 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.8)]"
-                  style={{ width: `${progress}%` }}
-                  transition={{ ease: 'linear' }}
-                />
-              </div>
-
-              {/* Dynamic Status Text */}
-              <div className="flex items-center justify-between w-full text-[10px] font-mono text-cyan-400/80">
-                <span className="tracking-wider truncate">{EXPEDITION_PHRASES[phraseIndex]}</span>
-                <span className="font-bold text-white pl-2">{progress}%</span>
-              </div>
+            <div aria-hidden="true" className="w-40 sm:w-48 mt-9 h-[2px] bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full origin-left bg-gradient-to-r from-cyan-300 via-white to-amber-200 shadow-[0_0_12px_rgba(103,232,249,0.8)]"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: minDuration / 1000, ease: 'linear', delay: 0.15 }}
+              />
             </div>
           </div>
         </motion.div>

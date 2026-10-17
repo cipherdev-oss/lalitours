@@ -102,9 +102,10 @@ export const BeyondThePostcard: React.FC<BeyondThePostcardProps> = ({ onOpenBook
               <button
                 onClick={() => setSelectedSpot(null)}
                 aria-label="Close preview"
-                className="absolute top-4 right-4 text-slate-400 hover:text-white text-sm bg-black/40 w-8 h-8 rounded-full flex items-center justify-center"
+                className="absolute top-3 right-3 z-20 min-w-[86px] h-11 px-3.5 rounded-full bg-slate-950/90 border-2 border-cyan-400/70 text-cyan-100 hover:text-white hover:bg-cyan-500/30 hover:border-cyan-200 shadow-[0_0_18px_rgba(34,211,238,0.5)] flex items-center justify-center gap-2 transition-all hover:scale-110 active:scale-95 cursor-pointer"
               >
-                ✕
+                <span aria-hidden="true" className="text-lg leading-none font-bold">✕</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em]">Close</span>
               </button>
 
               <div className="h-56 rounded-xl overflow-hidden mb-5 relative">
