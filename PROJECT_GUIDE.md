@@ -7,8 +7,7 @@
 - Type: Cinematic luxury travel marketing + booking-inquiry site. No backend / DB / auth.
 - All inquiries funnel to WhatsApp + Email (lead-gen only, no payment).
 - Contacts: WhatsApp `https://wa.me/971582177381` (+971 58 217 7381)
-  Email `liyanageronali@gmail.com`
-  HQ `Colombo 03 & Galle Fort, Sri Lanka`, claim `24/7 Concierge`
+  HQ `Kaluwamodara, Aluthgama, Sri Lanka`, claim `24/7 Concierge`
 
 ## 2. Tech Stack (exact)
 - React 19.0.1 + ReactDOM 19, `jsx:react-jsx`, StrictMode in `src/main.tsx`
@@ -92,7 +91,7 @@ cd /home/silvver/Documents/lali/lalitours; npm install; npm run dev (3000); npm 
 - Add destination: data/destinations.ts + /img webp in public/img + optional ARCH_DATA + LOCATIONS.
 - Add tour: STADIUM_TOURS + TOUR_PACKAGES same id + ESSENTIAL_HIGHLIGHTS + App keyword match.
 - Add hidden gem: cards+guides same slug -> build auto-prerenders (BeyondThePostcard auto).
-- Change WA/email: replace 971582177381 + liyanageronali@gmail.com in SocialDock,FloatingWhatsApp,Navbar,Footer,BookTourPage,TourDetailModal,HiddenSpotGuidePage.
+- Change WA/HQ: update 971582177381 or Kaluwamodara in SocialDock,FloatingWhatsApp,Navbar,Footer,BookTourPage,TourDetailModal,HiddenSpotGuidePage.
 - New home section: src/components/X.tsx({onOpenBooking?}), import lazy if heavy, insert order, end WaveDivider fill=next bg, section-lazy.
 - DO NOT: add router/redux/backend, change vite alias/HMR, rename Destination fields or tour ids solo, delete hidden path/prerender, import framer-motion.
 

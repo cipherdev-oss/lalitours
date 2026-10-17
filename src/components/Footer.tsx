@@ -2,7 +2,6 @@ import React from 'react';
 import {
   MapPin,
   Phone,
-  Mail,
   Clock,
   ArrowUp,
   ChevronRight,
@@ -157,26 +156,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 </div>
               </a>
 
-              <a
-                href="mailto:liyanageronali@gmail.com"
-                className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/80 border border-cyan-500/20 hover:border-cyan-400/50 transition-colors group cursor-pointer"
-              >
-                <Mail className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                <div className="overflow-hidden">
-                  <div className="text-[10px] uppercase font-mono text-cyan-400 font-bold">
-                    Official Email
-                  </div>
-                  <div className="text-white font-medium text-xs mt-0.5 truncate">
-                    liyanageronali@gmail.com
-                  </div>
-                  <div className="text-[10px] text-slate-400">24h Response Guaranteed</div>
-                </div>
-              </a>
-
               <div className="flex items-start gap-2.5 text-slate-400 text-xs pt-1">
                 <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-white font-medium">Headquarters:</span> Colombo 03 & Galle Fort, Sri Lanka.
+                  <span className="text-white font-medium">Headquarters:</span> Kaluwamodara, Aluthgama, Sri Lanka.
                 </div>
               </div>
 
